@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SSDAssignment.Models;
 
 namespace SSD_Assignment.Data
 {
@@ -21,5 +22,7 @@ namespace SSD_Assignment.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<SSDAssignment.Models.Listing> Listing { get; set; }
     }
 }
