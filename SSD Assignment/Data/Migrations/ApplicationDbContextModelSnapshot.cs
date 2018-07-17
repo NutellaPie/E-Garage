@@ -190,8 +190,6 @@ namespace SSD_Assignment.Data.Migrations
 
                     b.Property<string>("Description");
 
-                    b.Property<string>("PhotoPath");
-
                     b.Property<decimal>("Price");
 
                     b.Property<string>("Title");
