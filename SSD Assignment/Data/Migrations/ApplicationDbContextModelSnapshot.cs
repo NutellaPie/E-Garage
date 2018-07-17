@@ -179,7 +179,7 @@ namespace SSD_Assignment.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SSDAssignment.Models.Listing", b =>
+            modelBuilder.Entity("SSD_Assignment.Models.Listing", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();
@@ -197,6 +197,20 @@ namespace SSD_Assignment.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Listing");
+                });
+
+            modelBuilder.Entity("SSD_Assignment.Models.ProfilePicture", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ProfilePic");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Schedule");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

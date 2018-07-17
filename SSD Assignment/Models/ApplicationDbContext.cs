@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SSDAssignment.Models;
+using SSD_Assignment.Models;
 
 namespace SSD_Assignment.Data
 {
@@ -23,6 +23,8 @@ namespace SSD_Assignment.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
-        public DbSet<SSDAssignment.Models.Listing> Listing { get; set; }
+        public DbSet<SSD_Assignment.Models.Listing> Listing { get; set; }
+        public DbSet<SSD_Assignment.Models.ProfilePicture> Schedule { get; set; }
+
     }
 }

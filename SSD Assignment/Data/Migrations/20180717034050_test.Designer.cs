@@ -180,7 +180,7 @@ namespace SSD_Assignment.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("SSDAssignment.Models.Listing", b =>
+            modelBuilder.Entity("SSD_Assignment.Models.Listing", b =>
                 {
                     b.Property<int>("ID")
                         .ValueGeneratedOnAdd();

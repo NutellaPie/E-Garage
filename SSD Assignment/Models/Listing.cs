@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SSDAssignment.Models
+namespace SSD_Assignment.Models
 {
     public class Listing
     {

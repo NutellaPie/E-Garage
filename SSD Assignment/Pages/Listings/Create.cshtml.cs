@@ -5,10 +5,10 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using SSDAssignment.Models;
+using SSD_Assignment.Models;
 using SSD_Assignment.Data;
 
-namespace SSDAssignment.Pages.Listings
+namespace SSD_Assignment.Pages.Listings
 {
     public class CreateModel : PageModel
     {

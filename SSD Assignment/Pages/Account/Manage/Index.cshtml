@@ -11,23 +11,33 @@
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
+                <label asp-for="FileUpload.UploadProfilePicture" class="control-label"></label>
+                <input asp-for="FileUpload.UploadProfilePicture" type="file" class="form-control" style="height:auto" />
+                <span asp-validation-for="FileUpload.UploadProfilePicture" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FileUpload.Title" class="control-label"></label>
+                <input asp-for="FileUpload.Title" type="text" class="form-control" />
+                <span asp-validation-for="FileUpload.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
             </div>
             <div class="form-group">
                 <label asp-for="Input.Email"></label>
                 @if (Model.IsEmailConfirmed)
-                {
-                    <div class="input-group">
-                        <input asp-for="Input.Email" class="form-control" />
-                        <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
-                    </div>
-                }
-                else
-                {
-                    <input asp-for="Input.Email" class="form-control" />
-                    <button asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
-                }
+        {
+            <div class="input-group">
+                <input asp-for="Input.Email" class="form-control" />
+                <span class="input-group-addon" aria-hidden="true"><span class="glyphicon glyphicon-ok text-success"></span></span>
+            </div>
+}
+else
+{
+        <input asp-for="Input.Email" class="form-control" />
+        <button asp-page-handler="SendVerificationEmail" class="btn btn-link">Send verification email</button>
+}
                 <span asp-validation-for="Input.Email" class="text-danger"></span>
             </div>
             <div class="form-group">

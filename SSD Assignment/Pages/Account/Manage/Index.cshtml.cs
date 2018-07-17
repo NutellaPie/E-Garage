@@ -9,25 +9,35 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SSD_Assignment.Data;
 using SSD_Assignment.Services;
+using Microsoft.AspNetCore.Hosting;
+using SSD_Assignment.Models;
+using SSD_Assignment.Utilities;
 
 namespace SSD_Assignment.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private IHostingEnvironment _environment;
+
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
+            _context = context;
         }
 
+        [BindProperty]
+        public FileUpload FileUpload { get; set; }
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -51,6 +61,8 @@ namespace SSD_Assignment.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
+
+
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
@@ -77,7 +89,16 @@ namespace SSD_Assignment.Pages.Account.Manage
                 return Page();
             }
 
+            var ProfilePicData =
+                await FileHelpers.ProcessFormFile(FileUpload.UploadProfilePicture, ModelState);
+
+            var schedule = new ProfilePicture()
+            {
+                ProfilePic = ProfilePicData
+            };
+
             var user = await _userManager.GetUserAsync(User);
+
             if (user == null)
             {
                 throw new ApplicationException($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
@@ -100,6 +121,9 @@ namespace SSD_Assignment.Pages.Account.Manage
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
             }
+
+            _context.Schedule.Add(schedule);
+            await _context.SaveChangesAsync();
 
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();
