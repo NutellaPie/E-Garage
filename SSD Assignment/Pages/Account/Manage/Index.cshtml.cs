@@ -36,8 +36,6 @@ namespace SSD_Assignment.Pages.Account.Manage
             _context = context;
         }
 
-        [BindProperty]
-        public FileUpload FileUpload { get; set; }
         public string Username { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
@@ -50,6 +48,7 @@ namespace SSD_Assignment.Pages.Account.Manage
 
         public class InputModel
         {
+
             [Required]
             [EmailAddress]
             public string Email { get; set; }
@@ -61,7 +60,6 @@ namespace SSD_Assignment.Pages.Account.Manage
 
         public async Task<IActionResult> OnGetAsync()
         {
-
 
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
@@ -89,14 +87,6 @@ namespace SSD_Assignment.Pages.Account.Manage
                 return Page();
             }
 
-            var ProfilePicData =
-                await FileHelpers.ProcessFormFile(FileUpload.UploadProfilePicture, ModelState);
-
-            var schedule = new ProfilePicture()
-            {
-                ProfilePic = ProfilePicData
-            };
-
             var user = await _userManager.GetUserAsync(User);
 
             if (user == null)
@@ -121,9 +111,6 @@ namespace SSD_Assignment.Pages.Account.Manage
                     throw new ApplicationException($"Unexpected error occurred setting phone number for user with ID '{user.Id}'.");
                 }
             }
-
-            _context.Schedule.Add(schedule);
-            await _context.SaveChangesAsync();
 
             StatusMessage = "Your profile has been updated";
             return RedirectToPage();

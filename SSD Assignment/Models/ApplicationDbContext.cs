@@ -24,7 +24,6 @@ namespace SSD_Assignment.Data
         }
 
         public DbSet<SSD_Assignment.Models.Listing> Listing { get; set; }
-        public DbSet<SSD_Assignment.Models.ProfilePicture> Schedule { get; set; }
 
     }
 }
