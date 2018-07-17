@@ -16,7 +16,7 @@ namespace SSD_Assignment.Pages.Listings
         private readonly SSD_Assignment.Data.ApplicationDbContext _context;
         private async Task UploadPhoto()
         {
-            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads");
+            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings");
             var uploadedfilePath = Path.Combine(uploadsDirectoryPath, Listing.Photo.FileName);
 
             using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))

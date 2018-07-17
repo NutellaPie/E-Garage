@@ -17,7 +17,8 @@ namespace SSD_Assignment.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly ApplicationDbContext _context;
+        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
