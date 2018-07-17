@@ -24,6 +24,7 @@ namespace SSD_Assignment.Data
         }
 
         public DbSet<SSD_Assignment.Models.Listing> Listing { get; set; }
+        public DbSet<SSD_Assignment.Models.ProfilePic> ProfilePics { get; set; }
 
     }
 }

@@ -12,24 +12,39 @@ using SSD_Assignment.Services;
 using Microsoft.AspNetCore.Hosting;
 using SSD_Assignment.Models;
 using SSD_Assignment.Utilities;
+using System.IO;
+
 
 namespace SSD_Assignment.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
-
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private IHostingEnvironment _environment;
 
+        [BindProperty]
+        public ProfilePic GetProfilePic { get; set; }
+
+        private async Task UploadPhoto()
+        {
+            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
+            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, GetProfilePic.Profilepicture.FileName);
+
+            using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+            {
+                await GetProfilePic.Profilepicture.CopyToAsync(fileStream);
+            }
+        }
+
+        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            ApplicationDbContext context)
+            SSD_Assignment.Data.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
