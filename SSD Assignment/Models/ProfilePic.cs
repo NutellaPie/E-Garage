@@ -13,5 +13,6 @@ namespace SSD_Assignment.Models
         public string PhotoPath { get; set; }
         [NotMapped]
         public IFormFile Profilepicture { get; set; }
+
     }
 }

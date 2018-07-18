@@ -103,6 +103,9 @@ namespace SSD_Assignment.Pages.Account.Manage
                 return Page();
             }
 
+            GetProfilePic.PhotoPath = GetProfilePic.Profilepicture.FileName;
+            await UploadPhoto();
+
             var user = await _userManager.GetUserAsync(User);
 
             if (user == null)
