@@ -16,13 +16,16 @@ namespace SSD_Assignment.Pages.Listings
         private readonly SSD_Assignment.Data.ApplicationDbContext _context;
         private async Task UploadPhoto()
         {
+            var fileName = Guid.NewGuid().ToString() + Listing.Photo.FileName;
             var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings");
-            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, Listing.Photo.FileName);
+            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
 
             using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
             {
                 await Listing.Photo.CopyToAsync(fileStream);
             }
+
+            Listing.PhotoPath = fileName;
         }
         public CreateModel(SSD_Assignment.Data.ApplicationDbContext context)
         {
@@ -44,7 +47,6 @@ namespace SSD_Assignment.Pages.Listings
                 return Page();
             }
 
-            Listing.PhotoPath = Listing.Photo.FileName;
             await UploadPhoto();
 
             _context.Listing.Add(Listing);

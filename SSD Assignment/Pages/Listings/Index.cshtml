@@ -6,7 +6,7 @@
 }
 
 @section Styles {
-<link rel="stylesheet" href="~/css/Products.css" />
+    <link rel="stylesheet" href="~/css/Products.css" />
 }
 
 <h2>Listings</h2>
@@ -17,8 +17,9 @@
 
 <ul class="products">
     @foreach (var item in Model.Listing)
-        {
-            <li  @*style="width: 200px; display: inline-block; vertical-align: top; border: solid"*@>
+    {
+        <li @*style="width: 200px; display: inline-block; vertical-align: top; border: solid" *@>
+            <a asp-page="./Details" asp-route-id="@item.ID">
                 <img src="~/Uploads/Listings/@item.PhotoPath">
                 <h4>
                     @Html.DisplayFor(modelItem => item.Title)
@@ -26,64 +27,65 @@
                 <p>
                     @Html.DisplayFor(modelItem => item.Price)
                 </p>
-            </li>
-        }
+            </a>
+        </li>
+    }
 </ul>
 
 <table class="table">
-        <thead>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].Condition)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Listing[0].Photo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Listing)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Listing[0].Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Listing[0].Price)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Listing[0].Description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Listing[0].Category)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Listing[0].Condition)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Listing[0].Photo)
-                </th>
-                <th></th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Condition)
+                </td>
+                <td>
+                    <img src="~/Uploads/Listings/@item.PhotoPath" class="img-thumbnail" width="50" />
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model.Listing)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Price)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Category)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Condition)
-                    </td>
-                    <td>
-                        <img src="~/Uploads/Listings/@item.PhotoPath" class="img-thumbnail" width="50" />
-                    </td>
-                    <td>
-                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
 
