@@ -13,7 +13,6 @@
             @if (Model.GetProfilePic == null)
             {
                 <img src="~/Uploads/ProfilePics/empty.png" width="100" />
-
             }
             else
             {
@@ -53,7 +52,3 @@
         </form>
     </div>
 </div>
-
-@section Scripts {
-    @await Html.PartialAsync("_ValidationScriptsPartial")
-}

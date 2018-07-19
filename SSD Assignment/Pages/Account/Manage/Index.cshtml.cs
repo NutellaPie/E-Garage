@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using SSD_Assignment.Models;
 using SSD_Assignment.Utilities;
 using System.IO;
+using Microsoft.AspNetCore.Http;
 
 
 namespace SSD_Assignment.Pages.Account.Manage
@@ -29,13 +30,17 @@ namespace SSD_Assignment.Pages.Account.Manage
 
         private async Task UploadPhoto()
         {
-            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
-            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, GetProfilePic.Profilepicture.FileName);
-
-            using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+            if (System.IO.File.Exists(GetProfilePic.PhotoPath))
             {
-                await GetProfilePic.Profilepicture.CopyToAsync(fileStream);
+                var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
+                var uploadedfilePath = Path.Combine(uploadsDirectoryPath, GetProfilePic.PhotoPath);
+
+                using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+                {
+                    await GetProfilePic.Profilepicture.CopyToAsync(fileStream);
+                }
             }
+
         }
 
         private readonly SSD_Assignment.Data.ApplicationDbContext _context;
@@ -103,8 +108,12 @@ namespace SSD_Assignment.Pages.Account.Manage
                 return Page();
             }
 
-            GetProfilePic.PhotoPath = GetProfilePic.Profilepicture.FileName;
-            await UploadPhoto();
+
+            if (System.IO.File.Exists(GetProfilePic.PhotoPath))
+            {
+                GetProfilePic.PhotoPath = GetProfilePic.Profilepicture.FileName;
+                await UploadPhoto();
+            }
 
             var user = await _userManager.GetUserAsync(User);
 
@@ -132,7 +141,7 @@ namespace SSD_Assignment.Pages.Account.Manage
             }
 
             StatusMessage = "Your profile has been updated";
-            return RedirectToPage();
+            return RedirectToPage("./Index");
         }
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
@@ -156,3 +165,4 @@ namespace SSD_Assignment.Pages.Account.Manage
         }
     }
 }
+
