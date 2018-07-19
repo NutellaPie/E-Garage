@@ -3,8 +3,10 @@
     display: inline-block;
     vertical-align: top;
     text-align: center;
+    background-color: antiquewhite;
 }
 
 ul.products img{
-    width: 200px;
+    width: 180px;
+    margin: 10px;
 }
