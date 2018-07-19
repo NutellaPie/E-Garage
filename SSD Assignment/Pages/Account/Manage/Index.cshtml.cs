@@ -24,25 +24,6 @@ namespace SSD_Assignment.Pages.Account.Manage
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private IHostingEnvironment _environment;
-
-        [BindProperty]
-        public ProfilePic GetProfilePic { get; set; }
-
-        private async Task UploadPhoto()
-        {
-            if (System.IO.File.Exists(GetProfilePic.PhotoPath))
-            {
-                var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
-                var uploadedfilePath = Path.Combine(uploadsDirectoryPath, GetProfilePic.PhotoPath);
-
-                using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
-                {
-                    await GetProfilePic.Profilepicture.CopyToAsync(fileStream);
-                }
-            }
-
-        }
-
         private readonly SSD_Assignment.Data.ApplicationDbContext _context;
 
         public IndexModel(
@@ -106,13 +87,6 @@ namespace SSD_Assignment.Pages.Account.Manage
             if (!ModelState.IsValid)
             {
                 return Page();
-            }
-
-
-            if (System.IO.File.Exists(GetProfilePic.PhotoPath))
-            {
-                GetProfilePic.PhotoPath = GetProfilePic.Profilepicture.FileName;
-                await UploadPhoto();
             }
 
             var user = await _userManager.GetUserAsync(User);
