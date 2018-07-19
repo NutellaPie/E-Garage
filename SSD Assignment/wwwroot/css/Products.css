@@ -1,0 +1,10 @@
+﻿ul.products li {
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+ul.products img{
+    width: 200px;
+}
