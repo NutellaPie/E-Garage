@@ -18,14 +18,17 @@
 <ul class="products">
     @foreach (var item in Model.Listing)
     {
-        <li @*style="width: 200px; display: inline-block; vertical-align: top; border: solid" *@>
+        <li>
             <a asp-page="./Details" asp-route-id="@item.ID">
                 <img src="~/Uploads/Listings/@item.PhotoPath">
                 <h4>
                     @Html.DisplayFor(modelItem => item.Title)
                 </h4>
                 <p>
-                    @Html.DisplayFor(modelItem => item.Price)
+                    $@Html.DisplayFor(modelItem => item.Price)
+                </p>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Condition)
                 </p>
             </a>
         </li>
