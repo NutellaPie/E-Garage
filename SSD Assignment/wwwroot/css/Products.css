@@ -7,6 +7,7 @@ body {
     background-color: #E5E5D8;
 }
 
+/*For Index page*/
 ul.products li {
     width: 200px;
     display: inline-block;
@@ -20,19 +21,43 @@ ul.products li {
         border: solid;
         border-radius: 15px;
     }
+
     ul.products li a:hover {
         text-decoration: none;
     }
+
     ul.products li h4 {
         color: black;
     }
+
     ul.products li p {
         color: lightslategray;
         font-size: 13px;
         margin-bottom: 0;
     }
 
-ul.products img {
+.image-container {
     width: 180px;
     height: 125px;
 }
+
+ul.products img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    vertical-align: middle;
+}
+
+
+
+/*Details Page*/
+.left-portion {
+    width: 50%;
+    margin-top: 50px;
+}
+
+    .left-portion img {
+        height: 100%;
+        width: 100%;
+    }

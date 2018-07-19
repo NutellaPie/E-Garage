@@ -20,7 +20,9 @@
     {
         <li>
             <a asp-page="./Details" asp-route-id="@item.ID">
-                <img src="~/Uploads/Listings/@item.PhotoPath">
+                <div class="image-container">
+                    <img src="~/Uploads/Listings/@item.PhotoPath">
+                </div>
                 <h4>
                     @Html.DisplayFor(modelItem => item.Title)
                 </h4>
