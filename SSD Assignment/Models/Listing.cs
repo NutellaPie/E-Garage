@@ -15,7 +15,9 @@ namespace SSD_Assignment.Models
         public string Title { get; set; }
         [Required]
         public decimal Price { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public string Category { get; set; }
         [Required]
         public string Condition { get; set; }

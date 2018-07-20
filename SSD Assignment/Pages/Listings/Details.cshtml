@@ -30,6 +30,9 @@
             <td style="vertical-align: text-top"><img src="~/images/Listings/information.png"></td>
             <td class="description">@Html.DisplayFor(model => model.Listing.Description)</td>
         </tr>
+        <tr>
+            <td colspan="2"><a asp-page="./Delete" asp-route-id="@Model.Listing.ID">Delete</a></td>
+        </tr>
     </table>
 </div>
 
