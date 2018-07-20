@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using SSD_Assignment.Data;
+using SSD_Assignment.Models;
 
 namespace SSD_Assignment.Pages.Account.Manage
 {
