@@ -1,0 +1,63 @@
+﻿/*
+Champagne Pink: #F4D8CD
+Baby Blue Eyes: #9DD1F1
+*/
+
+body {
+    background-color: #E5E5D8;
+}
+
+/*For Index page*/
+ul.products li {
+    width: 200px;
+    display: inline-block;
+    vertical-align: top;
+    background-color: whitesmoke;
+    margin: 4px;
+    padding: 10px;
+}
+
+    ul.products li:hover {
+        border: solid;
+        border-radius: 15px;
+    }
+
+    ul.products li a:hover {
+        text-decoration: none;
+    }
+
+    ul.products li h4 {
+        color: black;
+    }
+
+    ul.products li p {
+        color: lightslategray;
+        font-size: 13px;
+        margin-bottom: 0;
+    }
+
+.image-container {
+    width: 180px;
+    height: 125px;
+}
+
+ul.products img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    margin: auto;
+    vertical-align: middle;
+}
+
+
+
+/*Details Page*/
+.left-portion {
+    width: 50%;
+    margin-top: 50px;
+}
+
+    .left-portion img {
+        height: 100%;
+        width: 100%;
+    }
