@@ -10,19 +10,6 @@
     <div class="col-md-6">
         <form method="post">
             <div asp-validation-summary="All" class="text-danger"></div>
-            @if (Model.GetProfilePic == null)
-            {
-                <img src="~/Uploads/ProfilePics/empty.png" width="100" />
-            }
-            else
-            {
-                <img src="~/Uploads/ProfilePics/@Model.GetProfilePic.PhotoPath" width="100" />
-            }
-            <div class="form-group">
-                <label asp-for="GetProfilePic.Profilepicture" class="control-label"></label>
-                <input asp-for="GetProfilePic.Profilepicture" type="file" class="form-control" />
-                <span asp-validation-for="GetProfilePic.Profilepicture" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
