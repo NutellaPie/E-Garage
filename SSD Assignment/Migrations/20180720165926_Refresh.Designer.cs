@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SSD_Assignment.Data;
 using System;
 
-namespace SSD_Assignment.Data.Migrations
+namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180717152632_Listingphoto")]
-    partial class Listingphoto
+    [Migration("20180720165926_Refresh")]
+    partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -129,12 +129,14 @@ namespace SSD_Assignment.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SSD_Assignment.Data.ApplicationUser", b =>
+            modelBuilder.Entity("SSD_Assignment.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<int>("AccessFailedCount");
+
+                    b.Property<DateTime>("BirthDate");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
@@ -147,6 +149,8 @@ namespace SSD_Assignment.Data.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -187,7 +191,8 @@ namespace SSD_Assignment.Data.Migrations
 
                     b.Property<string>("Category");
 
-                    b.Property<string>("Condition");
+                    b.Property<string>("Condition")
+                        .IsRequired();
 
                     b.Property<string>("Description");
 
@@ -195,25 +200,12 @@ namespace SSD_Assignment.Data.Migrations
 
                     b.Property<decimal>("Price");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("Title")
+                        .IsRequired();
 
                     b.HasKey("ID");
 
                     b.ToTable("Listing");
-                });
-
-            modelBuilder.Entity("SSD_Assignment.Models.ProfilePicture", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ProfilePic");
-
-                    b.Property<string>("Title");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Schedule");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -226,7 +218,7 @@ namespace SSD_Assignment.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("SSD_Assignment.Data.ApplicationUser")
+                    b.HasOne("SSD_Assignment.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -234,7 +226,7 @@ namespace SSD_Assignment.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("SSD_Assignment.Data.ApplicationUser")
+                    b.HasOne("SSD_Assignment.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -247,7 +239,7 @@ namespace SSD_Assignment.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("SSD_Assignment.Data.ApplicationUser")
+                    b.HasOne("SSD_Assignment.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -255,7 +247,7 @@ namespace SSD_Assignment.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("SSD_Assignment.Data.ApplicationUser")
+                    b.HasOne("SSD_Assignment.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
