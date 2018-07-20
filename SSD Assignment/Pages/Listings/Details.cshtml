@@ -12,6 +12,26 @@
 <div class="left-portion">
     <img src="~/Uploads/Listings/@Model.Listing.PhotoPath">
 </div>
+<div class="right-portion">
+    <h2>
+        @Html.DisplayFor(model => model.Listing.Title)
+    </h2>
+    <hr />
+    <table class="description-table">
+        <tr>
+            <td><img src="~/images/Listings/price-tag.png"></td>
+            <td>S$@Html.DisplayFor(model => model.Listing.Price)</td>
+        </tr>
+        <tr>
+            <td><img src="~/images/Listings/menu-icon.png"></td>
+            <td>@Html.DisplayFor(model => model.Listing.Category)</td>
+        </tr>
+        <tr>
+            <td style="vertical-align: text-top"><img src="~/images/Listings/information.png"></td>
+            <td class="description">@Html.DisplayFor(model => model.Listing.Description)</td>
+        </tr>
+    </table>
+</div>
 
 @*<h2>Details</h2>
 

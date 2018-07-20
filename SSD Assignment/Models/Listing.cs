@@ -11,10 +11,13 @@ namespace SSD_Assignment.Models
     public class Listing
     {
         public int ID { get; set; }
+        [Required]
         public string Title { get; set; }
+        [Required]
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }
+        [Required]
         public string Condition { get; set; }
         public string PhotoPath { get; set; }
         [Required]
