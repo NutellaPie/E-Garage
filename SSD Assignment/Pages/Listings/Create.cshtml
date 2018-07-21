@@ -9,43 +9,57 @@
     <link rel="stylesheet" href="~/css/Products.css" />
 }
 
-<h2>Create</h2>
+<h2>Create a New Listing</h2>
 
-<h4>Listing</h4>
+<h4>What are you listing today?</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Listing.Photo" class="control-label">Image</label>
+                <input asp-for="Listing.Photo" type="file" class="form-control" />
+                <span asp-validation-for="Listing.Photo" class="text-danger"></span>
+            </div>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Listing.Title" class="control-label"></label>
-                <input asp-for="Listing.Title" class="form-control" />
+                <input asp-for="Listing.Title" class="form-control" placeholder="Name your listing" />
                 <span asp-validation-for="Listing.Title" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Listing.Price" class="control-label"></label>
-                <input asp-for="Listing.Price" class="form-control" />
+                <input asp-for="Listing.Price" class="form-control" placeholder="Price in SGD" />
                 <span asp-validation-for="Listing.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Listing.Description" class="control-label"></label>
-                <textarea asp-for="Listing.Description" class="form-control" style="height: 200px;"></textarea>
-                <span asp-validation-for="Listing.Description" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Listing.Category" class="control-label"></label>
-                <input asp-for="Listing.Category" class="form-control" />
-                <span asp-validation-for="Listing.Category" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <label asp-for="Listing.Condition" class="control-label"></label>
-                <input asp-for="Listing.Condition" class="form-control" />
+                <div>
+                    <label style="font-weight: normal;" for="New">New</label>
+                    <input id="New" type="radio" value="New" asp-for="Listing.Condition" /><br />
+                    <label style="font-weight: normal;" for="Used">Used</label>
+                    <input id="Used" type="radio" value="Used" asp-for="Listing.Condition" />
+                </div>
                 <span asp-validation-for="Listing.Condition" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Listing.Photo" class="control-label"></label>
-                <input asp-for="Listing.Photo" type="file" class="form-control" />
-                <span asp-validation-for="Listing.Photo" class="text-danger"></span>
+                <label asp-for="Listing.Category" class="control-label"></label>
+                <select asp-for="Listing.Category" class="form-control">
+                    <option value="">Select Category</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home Appliances">Home Appliances</option>
+                    <option value="Health & Beauty">Health & Beauty</option>
+                    <option value="Collectibles">Collectibles</option>
+                    <option value="Entertainment">Health & Beauty</option>
+                    <option value="Books">Books</option>
+                </select>
+                <span asp-validation-for="Listing.Category" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Listing.Description" class="control-label"></label>
+                <textarea asp-for="Listing.Description" class="form-control" style="height: 200px; resize: none;" placeholder="Describe what you are selling and include any details a buyer might be interested in."></textarea>
+                <span asp-validation-for="Listing.Description" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
