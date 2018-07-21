@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">SSD_Assignment</a>
+                <a asp-page="/Index" class="navbar-brand">E-Garage</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -35,6 +35,12 @@
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
                     <li><a asp-page="/Listings/Index">Listings</a></li>
+                    <li style="padding: 15px; padding-right:0;">
+                        <form action="/Listings">
+                            <input type="text" name="SearchString">
+                            <input type="submit" value="Search" />
+                        </form>
+                    </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
@@ -68,4 +74,3 @@
 </body>
 </html>
 
-  

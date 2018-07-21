@@ -21,9 +21,17 @@ namespace SSD_Assignment.Pages.Listings
 
         public IList<Listing> Listing { get;set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(string searchString)
         {
-            Listing = await _context.Listing.ToListAsync();
+            var listings = from l in _context.Listing
+                           select l;
+
+            if(!String.IsNullOrEmpty(searchString))
+    {
+                listings = listings.Where(s => s.Title.Contains(searchString));
+            }
+
+            Listing = await listings.ToListAsync();
         }
     }
 }
