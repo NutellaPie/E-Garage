@@ -23,14 +23,20 @@
                 <div class="image-container">
                     <img src="~/Uploads/Listings/@item.PhotoPath">
                 </div>
-                <h4>
+                <h3>
                     @Html.DisplayFor(modelItem => item.Title)
-                </h4>
-                <p>
+                </h3>
+                <h5>
                     $@Html.DisplayFor(modelItem => item.Price)
+                </h5>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Description)
                 </p>
                 <p>
                     @Html.DisplayFor(modelItem => item.Condition)
+                </p>
+                <p>
+                    @Html.DisplayFor(modelItem => item.Category)
                 </p>
             </a>
         </li>
