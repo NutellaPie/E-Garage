@@ -33,3 +33,64 @@ body {
         display: none;
     }
 }
+
+/*Navbar*/
+.navtop {
+    background-color: #e9e9e9;
+}
+
+.navbuttons {
+    color: black !important;
+    font-size: 17px !important;
+    padding-top: 25px !important;
+    padding-bottom: 21px !important;
+}
+
+    .navbuttons:hover {
+        background-color: #DDDDDD !important;
+    }
+
+.navlogout {
+    color: black !important;
+    font-size: 17px !important;
+    padding-top: 21.5px !important;
+    padding-bottom: 21px !important;
+    border: none;
+}
+
+    .navlogout:hover {
+        background-color: #DDDDDD !important;
+        text-decoration: none;
+    }
+
+.navtitle {
+    float: left;
+    color: black;
+    font-size: 25px;
+    padding: 15px;
+    padding-top: 25px;
+    padding-bottom: 21px;
+    border: none;
+    line-height: 20px;
+}
+
+    .navtitle:hover {
+        background-color: #DDDDDD !important;
+        text-decoration: none;
+        color: black;
+    }
+
+.searchnav {
+    padding: 6px;
+    border: none;
+    font-size: 17px;
+    float: left;
+}
+
+.searchbutton {
+    float: left;
+    padding: 6px 10px;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+}
