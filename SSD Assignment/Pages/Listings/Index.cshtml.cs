@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SSD_Assignment.Models;
 using SSD_Assignment.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SSD_Assignment.Pages.Listings
 {
@@ -20,9 +21,16 @@ namespace SSD_Assignment.Pages.Listings
         }
 
         public IList<Listing> Listing { get;set; }
+        public SelectList Categories { get; set; }
+        public string ListingCategory { get; set; }
 
-        public async Task OnGetAsync(string searchString)
+        public async Task OnGetAsync(string listingCategory, string searchString)
         {
+            // Use LINQ to get list of categories.
+            IQueryable<string> categoryQuery = from l in _context.Listing
+                                            orderby l.Category
+                                            select l.Category;
+
             var listings = from l in _context.Listing
                            select l;
 
@@ -30,7 +38,12 @@ namespace SSD_Assignment.Pages.Listings
     {
                 listings = listings.Where(s => s.Title.Contains(searchString));
             }
+            if (!String.IsNullOrEmpty(listingCategory))
+            {
+                listings = listings.Where(x => x.Category == listingCategory);
+            }
 
+            Categories = new SelectList(await categoryQuery.Distinct().ToListAsync());
             Listing = await listings.ToListAsync();
         }
     }

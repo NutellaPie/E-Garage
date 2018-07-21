@@ -38,6 +38,16 @@
                     <li><a class="navbuttons" asp-page="/Listings/Index">Listings</a></li>
                     <li style="padding: 15px;">
                         <form action="/Listings">
+                            <select class="categorynav" name="ListingCategory">
+                                <option value="" disabled selected>Categories</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Home Appliances">Home Appliances</option>
+                                <option value="Health & Beauty">Health & Beauty</option>
+                                <option value="Collectibles">Collectibles</option>
+                                <option value="Entertainment">Entertainment</option>
+                                <option value="Books">Books</option>
+                            </select>
                             <input class="searchnav" type="text" name="SearchString" placeholder="Search for an item">
                             <button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
                         </form>
