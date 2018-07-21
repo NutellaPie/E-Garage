@@ -9,8 +9,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SSD_Assignment.Data;
 using SSD_Assignment.Services;
+using SSD_Assignment.Models;
+using SSD_Assignment.Data;
 
 namespace SSD_Assignment
 {

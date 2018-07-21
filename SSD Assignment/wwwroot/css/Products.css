@@ -1,15 +1,15 @@
 ﻿/*
-Champagne Pink: #F4D8CD
-Baby Blue Eyes: #9DD1F1
+Logo Colours: b7b7ac
 */
 
 body {
     background-color: #E5E5D8;
 }
 
-/*For Index page*/
+/*Index page*/
 ul.products li {
     width: 200px;
+    height: 225px;
     display: inline-block;
     vertical-align: top;
     background-color: whitesmoke;
@@ -28,6 +28,10 @@ ul.products li {
 
     ul.products li h4 {
         color: black;
+        width: 180px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     ul.products li p {
@@ -53,11 +57,47 @@ ul.products img {
 
 /*Details Page*/
 .left-portion {
-    width: 50%;
-    margin-top: 50px;
+    width: 65%;
+    margin-top: 92.8px;
+    float: left;
+    padding-right: 10px;
 }
 
     .left-portion img {
         height: 100%;
         width: 100%;
+        box-shadow: 1px 1px 8px 1px #888888;
     }
+
+.right-portion {
+    width: 35%;
+    margin-top: 92.8px;
+    float: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 20px;
+    background-color: whitesmoke;
+    box-shadow: 1px 1px 8px 1px #888888;
+}
+
+    .right-portion hr {
+        border-color: sandybrown;
+        font-size: 10px;
+        padding-left: 0;
+        padding-right: 10px;
+    }
+
+
+.description-table td {
+    height: 50px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.description-table img {
+    width: 30px;
+}
+
+.description{
+    white-space: pre-wrap;
+}
