@@ -16,6 +16,7 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 
 
+
 namespace SSD_Assignment.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
@@ -38,7 +39,23 @@ namespace SSD_Assignment.Pages.Account.Manage
             _context = context;
         }
 
+        private async Task UploadPhoto()
+        {
+            var fileName = Guid.NewGuid().ToString() + ProfilePic.FileName;
+            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
+            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
+
+            using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+            {
+                await ProfilePic.CopyToAsync(fileStream);
+            }
+
+            //ProfilePic.FileName = fileName;
+        }
+
         public string Username { get; set; }
+
+        public IFormFile ProfilePic { get; set; }
 
         public bool IsEmailConfirmed { get; set; }
 
@@ -88,6 +105,12 @@ namespace SSD_Assignment.Pages.Account.Manage
             {
                 return Page();
             }
+
+            if (ProfilePic != null)
+            {
+                await UploadPhoto();
+            }
+                
 
             var user = await _userManager.GetUserAsync(User);
 

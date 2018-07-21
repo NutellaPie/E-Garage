@@ -11,8 +11,8 @@ using System;
 namespace SSD_Assignment.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180719050026_ProductDisplay")]
-    partial class ProductDisplay
+    [Migration("20180720121634_update")]
+    partial class update
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -136,6 +136,8 @@ namespace SSD_Assignment.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
+                    b.Property<DateTime>("BirthDate");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
@@ -147,6 +149,8 @@ namespace SSD_Assignment.Data.Migrations
                     b.Property<bool>("LockoutEnabled");
 
                     b.Property<DateTimeOffset?>("LockoutEnd");
+
+                    b.Property<string>("Name");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256);
@@ -200,18 +204,6 @@ namespace SSD_Assignment.Data.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Listing");
-                });
-
-            modelBuilder.Entity("SSD_Assignment.Models.ProfilePic", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("PhotoPath");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("ProfilePics");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
