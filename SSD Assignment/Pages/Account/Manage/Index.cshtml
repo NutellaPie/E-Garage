@@ -4,29 +4,32 @@
     ViewData["Title"] = "Profile";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/Manage.css" />
+</head>
 
 <h4>@ViewData["Title"]</h4>
 @Html.Partial("_StatusMessage", Model.StatusMessage)
 <div class="row">
     <div class="col-md-6">
         <form method="post" enctype="multipart/form-data">
-            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="image-container">
-                @*@if (Model.FileName == null)
-                    {
-                        <img src="~/Uploads/ProfilePics/default.png" />
-                    }
-                    else
-                    {
-                        <img src="~/Uploads/ProfilePics/@Model.FileName" />
-                    }*@
-                <img src="~/Uploads/ProfilePics/@Model.FileName" />
+                @if (Model.FileName == null)
+                {
+                    <img id="profimg" src="~/Uploads/ProfilePics/default.png" width="200" style="border-radius:50%" />
+                }
+                else
+                {
+                    <img id="profimg" src="~/Uploads/ProfilePics/@Model.FileName" width="200" style="border-radius:50%" />
+                }
             </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Input.ProfilePic">Profile Picture</label>
-                <input type="file" asp-for="Input.ProfilePic" class="form-control" id="FilUploader" />
+                <input type="file" asp-for="Input.ProfilePic" class="form-control" />
                 <span asp-validation-for="Input.ProfilePic"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Username"></label>
                 <input asp-for="Username" class="form-control" disabled />
@@ -56,3 +59,21 @@
         </form>
     </div>
 </div>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $(":file").change(function () {
+                if (this.files && this.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = imageIsLoaded;
+                    reader.readAsDataURL(this.files[0]);
+                }
+            });
+        });
+
+        function imageIsLoaded(e) {
+            $('#profimg').attr('src', e.target.result);
+        };
+    </script>
+}
