@@ -11,7 +11,6 @@ using SSD_Assignment.Data;
 using SSD_Assignment.Services;
 using Microsoft.AspNetCore.Hosting;
 using SSD_Assignment.Models;
-using SSD_Assignment.Utilities;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 
@@ -21,6 +20,19 @@ namespace SSD_Assignment.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
     {
+        //////////////////////PROPERTIES//////////////////////
+        public string Username { get; set; }
+
+        public bool IsEmailConfirmed { get; set; }
+
+        public string FileName { get; set; }
+
+        [TempData]
+        public string StatusMessage { get; set; }
+
+        [BindProperty]
+        public InputModel Input { get; set; }
+
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -39,43 +51,37 @@ namespace SSD_Assignment.Pages.Account.Manage
             _context = context;
         }
 
-        private async Task UploadPhoto()
-        {
-            var fileName = Guid.NewGuid().ToString() + ProfilePic.FileName;
-            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
-            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
-
-            using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
-            {
-                await ProfilePic.CopyToAsync(fileStream);
-            }
-
-            //ProfilePic.FileName = fileName;
-        }
-
-        public string Username { get; set; }
-
-        public IFormFile ProfilePic { get; set; }
-
-        public bool IsEmailConfirmed { get; set; }
-
-        [TempData]
-        public string StatusMessage { get; set; }
-
-        [BindProperty]
-        public InputModel Input { get; set; }
-
         public class InputModel
         {
-
             [Required]
             [EmailAddress]
+            [MaxLength(100)]
             public string Email { get; set; }
 
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Profile Picture")]
+            [BindProperty]
+            public IFormFile ProfilePic { get; set; }
         }
+
+        //////////////////////METHODS//////////////////////
+        //private async Task UploadPhoto()
+        //{
+        //    var user = await _userManager.GetUserAsync(User);
+        //    var fileName = Guid.NewGuid().ToString() + Input.ProfilePic.FileName;
+        //    var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
+        //    var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
+
+        //    using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+        //    {
+        //        await Input.ProfilePic.CopyToAsync(fileStream);
+        //    }
+
+        //    user.ProfilePic = Input.ProfilePic;
+        //}
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -91,7 +97,7 @@ namespace SSD_Assignment.Pages.Account.Manage
             Input = new InputModel
             {
                 Email = user.Email,
-                PhoneNumber = user.PhoneNumber
+                PhoneNumber = user.PhoneNumber,
             };
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
@@ -106,13 +112,24 @@ namespace SSD_Assignment.Pages.Account.Manage
                 return Page();
             }
 
-            if (ProfilePic != null)
-            {
-                await UploadPhoto();
-            }
-                
-
             var user = await _userManager.GetUserAsync(User);
+
+            if (Input.ProfilePic != null)
+            {
+                var fileName = Guid.NewGuid().ToString() + Input.ProfilePic.FileName;
+                var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
+                var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
+
+                using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+                {
+                    await Input.ProfilePic.CopyToAsync(fileStream);
+                    user.ProfilePic = Input.ProfilePic;
+                }
+
+                FileName = fileName;
+            }
+            
+            user.ProfilePic = Input.ProfilePic;
 
             if (user == null)
             {
@@ -140,6 +157,7 @@ namespace SSD_Assignment.Pages.Account.Manage
             StatusMessage = "Your profile has been updated";
             return RedirectToPage("./Index");
         }
+
         public async Task<IActionResult> OnPostSendVerificationEmailAsync()
         {
             if (!ModelState.IsValid)

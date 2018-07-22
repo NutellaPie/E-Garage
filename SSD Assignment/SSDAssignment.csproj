@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+    <Folder Include="Utilities\" />
     <Folder Include="wwwroot\images\Listings\" />
     <Folder Include="wwwroot\Uploads\Listings\" />
   </ItemGroup>
