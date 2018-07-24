@@ -14,8 +14,16 @@
         <ul class="nav navbar-nav navbar-right">
             <li>
                 <a class="navbuttons" asp-page="/Account/Manage/Index" title="Manage">
-                    <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/@user.ProfilePic" style="width: 60px"/>
-                    Hello @UserManager.GetUserName(User)!
+                    @if (user.ProfilePic == null)
+                    {
+                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/default.png" style="width: 60px" />
+                    }
+                    else
+                    {
+                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/@user.ProfilePic" style="width: 60px" />
+                    }
+
+                    Hello @user.Name!
                 </a>
             </li>
             <li>
