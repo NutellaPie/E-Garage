@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SSD_Assignment.Models;
 
-namespace SSD_Assignment.Data
+namespace SSD_Assignment.Models
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -24,6 +24,6 @@ namespace SSD_Assignment.Data
         }
 
         public DbSet<SSD_Assignment.Models.Listing> Listing { get; set; }
-        public DbSet<SSD_Assignment.Models.ApplicationUser> ApplicationUsers { get; set; }
+        public DbSet<AuditRecord> AuditRecords { get; set; }
     }
 }
