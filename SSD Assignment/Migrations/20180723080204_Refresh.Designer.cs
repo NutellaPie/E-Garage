@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using SSD_Assignment.Data;
+using SSD_Assignment.Models;
 using System;
 
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180721155037_profilepic")]
-    partial class profilepic
+    [Migration("20180723080204_Refresh")]
+    partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -182,6 +182,22 @@ namespace SSDAssignment.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("SSD_Assignment.Models.AuditRecord", b =>
+                {
+                    b.Property<int>("Audit_ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AuditActionType");
+
+                    b.Property<DateTime>("DateTimeStamp");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Audit_ID");
+
+                    b.ToTable("AuditRecords");
                 });
 
             modelBuilder.Entity("SSD_Assignment.Models.Listing", b =>

@@ -37,13 +37,13 @@ namespace SSD_Assignment.Pages.Account.Manage
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private IHostingEnvironment _environment;
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            SSD_Assignment.Data.ApplicationDbContext context)
+            SSD_Assignment.Models.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;

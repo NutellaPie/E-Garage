@@ -13,9 +13,9 @@ namespace SSD_Assignment.Pages.Listings
 {
     public class EditModel : PageModel
     {
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
-        public EditModel(SSD_Assignment.Data.ApplicationDbContext context)
+        public EditModel(SSD_Assignment.Models.ApplicationDbContext context)
         {
             _context = context;
         }

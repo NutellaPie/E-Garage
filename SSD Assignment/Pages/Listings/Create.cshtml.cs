@@ -6,14 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SSD_Assignment.Models;
-using SSD_Assignment.Data;
 using System.IO;
 
 namespace SSD_Assignment.Pages.Listings
 {
     public class CreateModel : PageModel
     {
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
         private async Task UploadPhoto()
         {
             var fileName = Guid.NewGuid().ToString() + Listing.Photo.FileName;
@@ -27,7 +26,7 @@ namespace SSD_Assignment.Pages.Listings
 
             Listing.PhotoPath = fileName;
         }
-        public CreateModel(SSD_Assignment.Data.ApplicationDbContext context)
+        public CreateModel(SSD_Assignment.Models.ApplicationDbContext context)
         {
             _context = context;
         }

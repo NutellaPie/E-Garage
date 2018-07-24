@@ -16,11 +16,12 @@ namespace SSD_Assignment.Pages.Account
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-
-        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger)
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
+        public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, SSD_Assignment.Models.ApplicationDbContext context)
         {
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
@@ -75,6 +76,18 @@ namespace SSD_Assignment.Pages.Account
                 {
                     _logger.LogInformation("User logged in.");
                     return LocalRedirect(Url.GetLocalUrl(returnUrl));
+                }
+                else
+                {                     // Login failed attempt - create an audit record
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Failed Login";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+
+                    auditrecord.Username = Input.Email;
+                    // save the email used for the failed login 
+
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
                 }
                 if (result.RequiresTwoFactor)
                 {

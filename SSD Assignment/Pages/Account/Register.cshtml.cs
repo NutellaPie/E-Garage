@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using SSD_Assignment.Models;
 using SSD_Assignment.Services;
 
+
 namespace SSD_Assignment.Pages.Account
 {
     public class RegisterModel : PageModel
@@ -39,6 +40,7 @@ namespace SSD_Assignment.Pages.Account
         public class InputModel
         {
             [Required]
+            [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "Please enter valid name.")]
             [Display(Name = "Name")]
             public string Name { get; set; }
 
@@ -53,7 +55,8 @@ namespace SSD_Assignment.Pages.Account
             public string Email { get; set; }
 
             [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [RegularExpression("^[a-zA-Z0-9 ]*$", ErrorMessage = "Please enter a valid password using only alphanumeric characters.")]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 8)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }

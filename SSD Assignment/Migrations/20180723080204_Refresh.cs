@@ -51,14 +51,29 @@ namespace SSDAssignment.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AuditRecords",
+                columns: table => new
+                {
+                    Audit_ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    AuditActionType = table.Column<string>(nullable: true),
+                    DateTimeStamp = table.Column<DateTime>(nullable: false),
+                    Username = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditRecords", x => x.Audit_ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Listing",
                 columns: table => new
                 {
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Category = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: false),
                     Condition = table.Column<string>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: false),
                     PhotoPath = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
                     Title = table.Column<string>(nullable: false)
@@ -230,6 +245,9 @@ namespace SSDAssignment.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "AuditRecords");
 
             migrationBuilder.DropTable(
                 name: "Listing");

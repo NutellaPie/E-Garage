@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
-using SSD_Assignment.Data;
+using SSD_Assignment.Models;
 using System;
 
 namespace SSDAssignment.Migrations
@@ -163,8 +163,6 @@ namespace SSDAssignment.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PhotoPath");
-
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -183,6 +181,22 @@ namespace SSDAssignment.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("SSD_Assignment.Models.AuditRecord", b =>
+                {
+                    b.Property<int>("Audit_ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AuditActionType");
+
+                    b.Property<DateTime>("DateTimeStamp");
+
+                    b.Property<string>("Username");
+
+                    b.HasKey("Audit_ID");
+
+                    b.ToTable("AuditRecords");
                 });
 
             modelBuilder.Entity("SSD_Assignment.Models.Listing", b =>
