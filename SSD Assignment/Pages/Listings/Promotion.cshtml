@@ -1,0 +1,67 @@
+﻿@page
+@model SSDAssignment.Pages.Listings.PromptionModel
+
+@{
+    ViewData["Title"] = "Promption";
+}
+
+@section Styles{
+    <link rel="stylesheet" href="~/css/Promotion.css" />
+}
+
+<h2>Promotion</h2>
+
+<form action="/Index">
+    <div class="Price" style="width: 500px; margin-top: 20px;">
+        <h3>Promotion Packages</h3>
+        <input asp-for="Promotion.PromotionPackages" type="radio" name="type" value="Promo1"> 7 Days - $10.00 SGD<br>
+        <input asp-for="Promotion.PromotionPackages" type="radio" name="type" value="Promo2"> 15 Days - $18.00 SGD<br>
+        <input asp-for="Promotion.PromotionPackages" type="radio" name="type" value="Promo3"> 30 Days - $32.00 SGD
+    </div>
+    <div class="UserDetails" style="width: 500px; margin-top: 20px;">
+        <div>
+            <h3>Particulars</h3>
+            <p asp-for="Promotion.FirstName" style="display:inline-block; width: 45%;">First name:</p>
+            <p style="display:inline-block; width: 45%;">Last name:</p>
+        </div>
+        <div>
+            <input asp-for="Promotion.FirstName" type="text" name="firstname">
+            <input asp-for="Promotion.LastName" type="text" name="lastname" style="display: inline-block; margin-left: 35px;">
+        </div>
+        <br />
+        <div>
+            <p style="display:inline-block; width: 45%;">Email:</p>
+            <p style="display:inline-block; width: 45%;">Phone Number:</p>
+        </div>
+        <input asp-for="Promotion.Email" type="email" name="emailaddress">
+        <input asp-for="Promotion.PhoneNumber" type="number" name="phonenumber" style="display: inline-block; margin-left: 35px;" />
+        <br /><br />
+    </div>
+    <div class="CreditCard" style="width: 500px; margin-top: 20px;">
+        <div>
+            <h3>Payment Information</h3>
+            <p style="display:inline-block; width: 45%;">Card Number* :</p>
+        </div>
+        <div>
+            <input asp-for="Promotion.CardNumber" type="text" name="cardnumber">
+        </div>
+        <br />
+        <div>
+            <p style="display:inline-block; width: 45%;">Date of Expiry* :</p>
+            <p style="display:inline-block; width: 45%;">CVV* :</p>
+        </div>
+        <div>
+            <input asp-for="Promotion.DateOfExpiry" type="date" name="DateOfExpiry">
+            <input asp-for="Promotion.CVV" type="number" name="CVV" style="display: inline-block; margin-left: 65px;" />
+        </div>
+    </div>
+    <br /><br />
+    <input type="submit" value="Submit" style="display: inline-block; padding-left: 20px; padding-right: 20px;" />
+    <br><br>
+    <a asp-page="./Index"> Go back to previous page </a>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
