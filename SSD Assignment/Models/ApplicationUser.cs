@@ -7,18 +7,14 @@ using Microsoft.AspNetCore.Http;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-
 namespace SSD_Assignment.Models
 {
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
-
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         [Required]
-        [NotMapped]
-        public IFormFile ProfilePic { get; set; }
-        
+        public string ProfilePic { get; set; }
     }
 }
