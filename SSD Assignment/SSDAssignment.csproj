@@ -4,6 +4,10 @@
     <UserSecretsId>aspnet-SSD_Assignment-0CADE72C-9A3E-4095-8CB7-F30C3BDC4E0E</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20180724084839_jj.cs" />
+    <Compile Remove="Migrations\20180724084839_jj.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" PrivateAssets="All" />
