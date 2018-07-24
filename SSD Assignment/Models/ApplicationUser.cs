@@ -15,6 +15,7 @@ namespace SSD_Assignment.Models
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         [Required]
-        public string ProfilePic { get; set; }
+        [NotMapped]
+        public IFormFile ProfilePic { get; set; }
     }
 }

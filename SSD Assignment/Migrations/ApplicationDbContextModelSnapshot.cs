@@ -163,8 +163,7 @@ namespace SSDAssignment.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("ProfilePic")
-                        .IsRequired();
+                    b.Property<string>("PhotoPath");
 
                     b.Property<string>("SecurityStamp");
 
