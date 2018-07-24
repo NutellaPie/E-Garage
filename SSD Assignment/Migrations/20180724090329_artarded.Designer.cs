@@ -5,15 +5,17 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using SSD_Assignment.Data;
 using SSD_Assignment.Models;
 using System;
 
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180724090329_artarded")]
+    partial class artarded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -163,7 +165,8 @@ namespace SSDAssignment.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
-                    b.Property<string>("PhotoPath");
+                    b.Property<string>("ProfilePic")
+                        .IsRequired();
 
                     b.Property<string>("SecurityStamp");
 
@@ -183,22 +186,6 @@ namespace SSDAssignment.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-                });
-
-            modelBuilder.Entity("SSD_Assignment.Models.AuditRecord", b =>
-                {
-                    b.Property<int>("Audit_ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("AuditActionType");
-
-                    b.Property<DateTime>("DateTimeStamp");
-
-                    b.Property<string>("Username");
-
-                    b.HasKey("Audit_ID");
-
-                    b.ToTable("AuditRecords");
                 });
 
             modelBuilder.Entity("SSD_Assignment.Models.Listing", b =>
@@ -225,32 +212,6 @@ namespace SSDAssignment.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Listing");
-                });
-
-            modelBuilder.Entity("SSD_Assignment.Models.Promotion", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<int>("CVV");
-
-                    b.Property<int>("CardNumber");
-
-                    b.Property<DateTime>("DateOfExpiry");
-
-                    b.Property<string>("Email");
-
-                    b.Property<string>("FirstName");
-
-                    b.Property<string>("LastName");
-
-                    b.Property<int>("PhoneNumber");
-
-                    b.Property<double>("PromotionPackages");
-
-                    b.HasKey("ID");
-
-                    b.ToTable("Promotion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
