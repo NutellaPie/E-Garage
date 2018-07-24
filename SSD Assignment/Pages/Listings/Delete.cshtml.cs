@@ -13,9 +13,9 @@ namespace SSD_Assignment.Pages.Listings
 {
     public class DeleteModel : PageModel
     {
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
-        public DeleteModel(SSD_Assignment.Data.ApplicationDbContext context)
+        public DeleteModel(SSD_Assignment.Models.ApplicationDbContext context)
         {
             _context = context;
         }

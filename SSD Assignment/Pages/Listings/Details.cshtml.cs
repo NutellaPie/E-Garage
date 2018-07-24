@@ -6,15 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using SSD_Assignment.Models;
-using SSD_Assignment.Data;
 
 namespace SSD_Assignment.Pages.Listings
 {
     public class DetailsModel : PageModel
     {
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
-        public DetailsModel(SSD_Assignment.Data.ApplicationDbContext context)
+        public DetailsModel(SSD_Assignment.Models.ApplicationDbContext context)
         {
             _context = context;
         }
