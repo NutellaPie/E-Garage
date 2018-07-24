@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SSD_Assignment.Services;
 using SSD_Assignment.Models;
 using SSD_Assignment.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SSD_Assignment
 {
@@ -33,6 +34,9 @@ namespace SSD_Assignment
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
 
             services.Configure<IdentityOptions>(options =>
             {
