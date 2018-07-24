@@ -1,8 +1,8 @@
 ﻿@page
-@model SSDAssignment.Pages.Listings.PromptionModel
+@model SSDAssignment.Pages.Listings.PromotionModel
 
 @{
-    ViewData["Title"] = "Promption";
+    ViewData["Title"] = "Promotion";
 }
 
 @section Styles{
@@ -11,7 +11,7 @@
 
 <h2>Promotion</h2>
 
-<form action="/Index">
+<form method="post">
     <div class="Price" style="width: 500px; margin-top: 20px;">
         <h3>Promotion Packages</h3>
         <input asp-for="Promotion.PromotionPackages" type="radio" name="type" value="Promo1"> 7 Days - $10.00 SGD<br>

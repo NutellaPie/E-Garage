@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using SSD_Assignment.Data;
+using SSD_Assignment.Models;
 using System;
 
 namespace SSDAssignment.Migrations

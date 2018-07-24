@@ -9,11 +9,11 @@ using SSD_Assignment.Models;
 
 namespace SSDAssignment.Pages.Listings
 {
-    public class PromptionModel : PageModel
+    public class PromotionModel : PageModel
     {
         private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
-        public PromptionModel(SSD_Assignment.Models.ApplicationDbContext context)
+        public PromotionModel(SSD_Assignment.Models.ApplicationDbContext context)
         {
             _context = context;
         }
