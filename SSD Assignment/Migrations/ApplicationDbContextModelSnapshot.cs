@@ -163,6 +163,8 @@ namespace SSDAssignment.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed");
 
+                    b.Property<string>("PhotoPath");
+
                     b.Property<string>("SecurityStamp");
 
                     b.Property<bool>("TwoFactorEnabled");
@@ -223,6 +225,32 @@ namespace SSDAssignment.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Listing");
+                });
+
+            modelBuilder.Entity("SSD_Assignment.Models.Promotion", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CVV");
+
+                    b.Property<int>("CardNumber");
+
+                    b.Property<DateTime>("DateOfExpiry");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<int>("PhoneNumber");
+
+                    b.Property<double>("PromotionPackages");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Promotion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

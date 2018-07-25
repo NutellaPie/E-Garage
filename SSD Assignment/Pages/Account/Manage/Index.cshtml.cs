@@ -102,6 +102,7 @@ namespace SSD_Assignment.Pages.Account.Manage
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
+            FileName = user.ProfilePic;
             return Page();
         }
 
@@ -122,14 +123,11 @@ namespace SSD_Assignment.Pages.Account.Manage
 
                 using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
                 {
+                    user.ProfilePic = fileName;
                     await Input.ProfilePic.CopyToAsync(fileStream);
-                    user.ProfilePic = Input.ProfilePic;
                 }
-
                 FileName = fileName;
             }
-            
-            user.ProfilePic = Input.ProfilePic;
 
             if (user == null)
             {
@@ -154,6 +152,7 @@ namespace SSD_Assignment.Pages.Account.Manage
                 }
             }
 
+            await _context.SaveChangesAsync();
             StatusMessage = "Your profile has been updated";
             return RedirectToPage("./Index");
         }

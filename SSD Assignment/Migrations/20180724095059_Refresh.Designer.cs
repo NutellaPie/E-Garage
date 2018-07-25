@@ -11,7 +11,7 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180723080204_Refresh")]
+    [Migration("20180724095059_Refresh")]
     partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -163,6 +163,9 @@ namespace SSDAssignment.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<string>("ProfilePic")
+                        .IsRequired();
 
                     b.Property<string>("SecurityStamp");
 
