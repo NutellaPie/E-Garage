@@ -26,5 +26,6 @@ namespace SSD_Assignment.Models
         public DbSet<SSD_Assignment.Models.Listing> Listing { get; set; }
         public DbSet<SSD_Assignment.Models.ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<AuditRecord> AuditRecords { get; set; }
+        public DbSet<Promotion> Promotion { get; set; }
     }
 }

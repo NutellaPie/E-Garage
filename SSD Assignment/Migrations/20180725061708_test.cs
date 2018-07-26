@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SSDAssignment.Migrations
 {
-    public partial class Refresh : Migration
+    public partial class test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,7 +41,7 @@ namespace SSDAssignment.Migrations
                     PasswordHash = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<string>(nullable: true),
                     PhoneNumberConfirmed = table.Column<bool>(nullable: false),
-                    ProfilePic = table.Column<string>(nullable: true),
+                    ProfilePic = table.Column<string>(nullable: false),
                     SecurityStamp = table.Column<string>(nullable: true),
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     UserName = table.Column<string>(maxLength: 256, nullable: true)
@@ -82,6 +82,26 @@ namespace SSDAssignment.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Listing", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Promotion",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    CVV = table.Column<int>(nullable: false),
+                    CardNumber = table.Column<int>(nullable: false),
+                    DateOfExpiry = table.Column<DateTime>(nullable: false),
+                    Email = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    PhoneNumber = table.Column<int>(nullable: false),
+                    PromotionPackages = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Promotion", x => x.ID);
                 });
 
             migrationBuilder.CreateTable(
@@ -252,6 +272,9 @@ namespace SSDAssignment.Migrations
 
             migrationBuilder.DropTable(
                 name: "Listing");
+
+            migrationBuilder.DropTable(
+                name: "Promotion");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
