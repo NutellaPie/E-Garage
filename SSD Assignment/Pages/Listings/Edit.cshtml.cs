@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SSD_Assignment.Models;
 using SSD_Assignment.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SSD_Assignment.Pages.Listings
-{
+{   
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly SSD_Assignment.Models.ApplicationDbContext _context;

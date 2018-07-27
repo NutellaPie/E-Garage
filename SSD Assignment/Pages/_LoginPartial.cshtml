@@ -3,6 +3,7 @@
 @using SSD_Assignment.Pages.Account
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
+@inject RoleManager<ApplicationRole> RoleManager
 
 @{
     var user = await UserManager.GetUserAsync(User);
@@ -12,15 +13,22 @@
 {
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="navbuttons" asp-page="/Roles/Manage">Roles</a>
+                </li>
+
+            }
             <li>
                 <a class="navbuttons" asp-page="/Account/Manage/Index" title="Manage">
                     @if (user.ProfilePic == null)
                     {
-                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/default.png" style="width: 60px" />
+                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/default.png" style="width: 60px; height: 60px;" />
                     }
                     else
                     {
-                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/@user.ProfilePic" style="width: 60px" />
+                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/@user.ProfilePic" style="width: 60px; height: 60px" />
                     }
 
                     Hello @user.Name!

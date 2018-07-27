@@ -42,8 +42,7 @@ body {
 .navbuttons {
     color: black !important;
     font-size: 17px !important;
-    padding-top: 25px !important;
-    padding-bottom: 21px !important;
+    padding: 0px !important;
 }
 
     .navbuttons:hover {
@@ -85,6 +84,7 @@ body {
     border: none;
     font-size: 17px;
     float: left;
+    width: 100px;
 }
 
 .searchbutton {

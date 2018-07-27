@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using SSD_Assignment.Models;
 using SSD_Assignment.Data;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SSD_Assignment.Pages.Listings
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly SSD_Assignment.Models.ApplicationDbContext _context;

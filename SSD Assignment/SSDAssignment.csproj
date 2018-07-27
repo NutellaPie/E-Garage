@@ -8,6 +8,8 @@
     <Compile Remove="Migrations\20180724094613_jj.Designer.cs" />
     <Compile Remove="Migrations\20180725181133_UpdateAppUser4.cs" />
     <Compile Remove="Migrations\20180725181133_UpdateAppUser4.Designer.cs" />
+    <Compile Remove="Migrations\20180727170657_AddRole.cs" />
+    <Compile Remove="Migrations\20180727170657_AddRole.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Captcha" Version="4.3.2" />
