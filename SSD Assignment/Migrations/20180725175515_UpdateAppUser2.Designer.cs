@@ -11,8 +11,8 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180724095059_Refresh")]
-    partial class Refresh
+    [Migration("20180725175515_UpdateAppUser2")]
+    partial class UpdateAppUser2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -211,6 +211,8 @@ namespace SSDAssignment.Migrations
                     b.Property<string>("Category")
                         .IsRequired();
 
+                    b.Property<string>("Comments");
+
                     b.Property<string>("Condition")
                         .IsRequired();
 
@@ -227,6 +229,32 @@ namespace SSDAssignment.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Listing");
+                });
+
+            modelBuilder.Entity("SSD_Assignment.Models.Promotion", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CVV");
+
+                    b.Property<int>("CardNumber");
+
+                    b.Property<DateTime>("DateOfExpiry");
+
+                    b.Property<string>("Email");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.Property<int>("PhoneNumber");
+
+                    b.Property<double>("PromotionPackages");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Promotion");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

@@ -7,12 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SSD_Assignment.Models;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SSD_Assignment.Pages.Listings
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly SSD_Assignment.Models.ApplicationDbContext _context;
+
         private async Task UploadPhoto()
         {
             var fileName = Guid.NewGuid().ToString() + Listing.Photo.FileName;
@@ -26,8 +32,13 @@ namespace SSD_Assignment.Pages.Listings
 
             Listing.PhotoPath = fileName;
         }
-        public CreateModel(SSD_Assignment.Models.ApplicationDbContext context)
+        public CreateModel(
+            SSD_Assignment.Models.ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _context = context;
         }
 

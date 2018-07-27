@@ -8,7 +8,7 @@ using SSD_Assignment.Models;
 
 namespace SSD_Assignment.Models
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -27,5 +27,6 @@ namespace SSD_Assignment.Models
         public DbSet<SSD_Assignment.Models.ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<AuditRecord> AuditRecords { get; set; }
         public DbSet<SSD_Assignment.Models.Promotion> Promotion { get; set; }
+        public DbSet<SSD_Assignment.Models.ApplicationRole> ApplicationRole { get; set; }
     }
 }

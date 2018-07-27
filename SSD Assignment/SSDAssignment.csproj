@@ -6,6 +6,8 @@
   <ItemGroup>
     <Compile Remove="Migrations\20180724094613_jj.cs" />
     <Compile Remove="Migrations\20180724094613_jj.Designer.cs" />
+    <Compile Remove="Migrations\20180725181133_UpdateAppUser4.cs" />
+    <Compile Remove="Migrations\20180725181133_UpdateAppUser4.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
