@@ -9,10 +9,9 @@ namespace SSD_Assignment.Pages
 {
     public class IndexModel : PageModel
     {
-        public string tempString { get; set; }
         public void OnGet()
         {
-            tempString = "This is hidden, JJ #25/7/2018";
+
         }
     }
 }
