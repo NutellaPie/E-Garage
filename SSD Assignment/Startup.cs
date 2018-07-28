@@ -38,6 +38,17 @@ namespace SSD_Assignment
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMemoryCache(); // Adds a default in-memory 
+                                       // implementation of 
+                                       // IDistributedCache
+                                       // Add framework services.
+            services.AddMvc();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -63,7 +74,7 @@ namespace SSD_Assignment
             {
                 // Cookie settings   
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(300);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(240);
                 // If the LoginPath isn't set, ASP.NET Core defaults
                 // the path to /Account/Login. 
                 options.LoginPath = "/Account/Login";
@@ -98,6 +109,8 @@ namespace SSD_Assignment
             {
                 app.UseExceptionHandler("/Error");
             }
+
+
 
             app.UseStaticFiles();
 

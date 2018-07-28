@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SSD_Assignment.Models;
 
+
 namespace SSD_Assignment.Pages.Account
 {
     public class LoginModel : PageModel
@@ -46,6 +47,7 @@ namespace SSD_Assignment.Pages.Account
 
             [Display(Name = "Remember me?")]
             public bool RememberMe { get; set; }
+
         }
 
         public async Task OnGetAsync(string returnUrl = null)
@@ -103,7 +105,10 @@ namespace SSD_Assignment.Pages.Account
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
+
+
             }
+
 
             // If we got this far, something failed, redisplay form
             return Page();
