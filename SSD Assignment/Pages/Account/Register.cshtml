@@ -3,12 +3,12 @@
 @{
     ViewData["Title"] = "Register";
 }
-
-<h2>@ViewData["Title"]</h2>
-
 <head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <link href=~/css/Register.css rel="stylesheet" type="text/css" />
 </head>
+
+<h2>@ViewData["Title"]</h2>
 
 <div class="row">
     <div class="col-md-4">
@@ -23,13 +23,13 @@
             </div>
             <div class="image-container">
                 @if (Model.FileName == null)
-                {
-                    <img id="profimg" src="~/Uploads/ProfilePics/default.png" width="200" style="border-radius:50%" />
-                }
-                else
-                {
-                    <img id="profimg" src="~/Uploads/ProfilePics/@Model.FileName" width="200" style="border-radius:50%" />
-                }
+        {
+            <img id="profimg" src="~/Uploads/ProfilePics/default.png" width="200" style="border-radius:50%" />
+}
+else
+{
+        <img id="profimg" src="~/Uploads/ProfilePics/@Model.FileName" width="200" style="border-radius:50%" />
+}
             </div>
             <div class="form-group">
                 <label asp-for="Input.ProfilePic"></label>
@@ -56,13 +56,19 @@
                 <input asp-for="Input.ConfirmPassword" class="form-control" />
                 <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
             </div>
+            <div class="g-recaptcha" data-sitekey="6Lex8mYUAAAAACdnRLuBbhfQMg0WoHsckRTPxQyi"></div>
+            <br />
+
             <button type="submit" class="btn btn-default">Register</button>
+            
         </form>
     </div>
 </div>
 
 @section Scripts {
     <script src="~/lib/jquery/dist/jquery-3.3.1.min.js"></script>
+    @*RenderSection("Scripts", required: false)*@
+
     <script>
         $(function () {
             $(":file").change(function () {

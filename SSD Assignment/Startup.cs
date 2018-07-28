@@ -38,6 +38,17 @@ namespace SSD_Assignment
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
 
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMemoryCache(); // Adds a default in-memory 
+                                       // implementation of 
+                                       // IDistributedCache
+                                       // Add framework services.
+            services.AddMvc();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
+
             services.Configure<IdentityOptions>(options =>
             {
                 // Password settings
@@ -98,6 +109,8 @@ namespace SSD_Assignment
             {
                 app.UseExceptionHandler("/Error");
             }
+
+
 
             app.UseStaticFiles();
 

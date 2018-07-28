@@ -31,4 +31,5 @@
     <Folder Include="wwwroot\images\Listings\" />
     <Folder Include="wwwroot\Uploads\Listings\" />
   </ItemGroup>
+  
 </Project>
