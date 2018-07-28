@@ -17,15 +17,18 @@ namespace SSD_Assignment.Pages.Account.Manage
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<ChangePasswordModel> _logger;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
         public ChangePasswordModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            ILogger<ChangePasswordModel> logger)
+            ILogger<ChangePasswordModel> logger,
+            SSD_Assignment.Models.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
+            _context = context;
         }
 
         [BindProperty]
@@ -90,8 +93,29 @@ namespace SSD_Assignment.Pages.Account.Manage
                 {
                     ModelState.AddModelError(string.Empty, error.Description);
                 }
+
+                // Password change failed attempt - create an audit record
+                var auditrecordfail = new AuditRecord();
+                auditrecordfail.AuditActionType = "Change Password FAIL";
+                auditrecordfail.DateTimeStamp = DateTime.Now;
+                auditrecordfail.Username = user.UserName;
+
+                // save the email used for the failed change
+                _context.AuditRecords.Add(auditrecordfail);
+                await _context.SaveChangesAsync();
+
                 return Page();
             }
+
+            // Password change success attempt - create an audit record
+            var auditrecord = new AuditRecord();
+            auditrecord.AuditActionType = "Change Password SUCCESS";
+            auditrecord.DateTimeStamp = DateTime.Now;
+            auditrecord.Username = user.UserName;
+
+            // save the email used for the successsful change
+            _context.AuditRecords.Add(auditrecord);
+            await _context.SaveChangesAsync();
 
             await _signInManager.SignInAsync(user, isPersistent: false);
             _logger.LogInformation("User changed their password successfully.");

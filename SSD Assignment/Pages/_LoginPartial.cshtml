@@ -17,6 +17,9 @@
             @if (@*check == true &&*@ User.IsInRole("Admin") == true)
             {
                 <li>
+                    <a class="navbuttons" asp-page="/Audit/Index">Audit</a>
+                </li>
+                <li>
                     <a class="navbuttons" asp-page="/Roles/Manage">Roles</a>
                 </li>
 
