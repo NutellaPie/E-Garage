@@ -63,7 +63,7 @@ namespace SSD_Assignment
             {
                 // Cookie settings   
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(300);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(240);
                 // If the LoginPath isn't set, ASP.NET Core defaults
                 // the path to /Account/Login. 
                 options.LoginPath = "/Account/Login";
