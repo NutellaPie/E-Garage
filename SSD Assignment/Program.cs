@@ -7,6 +7,9 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore;
+using SSD_Assignment.Models;
 
 namespace SSD_Assignment
 {
@@ -14,7 +17,18 @@ namespace SSD_Assignment
     {
         public static void Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            var host = BuildWebHost(args);
+
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                var context = services.GetRequiredService<ApplicationDbContext>();
+                context.Database.Migrate();
+                SeedData.Initialize(services);
+            }
+
+            host.Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

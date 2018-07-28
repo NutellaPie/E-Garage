@@ -11,8 +11,8 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180727165133_authorize")]
-    partial class authorize
+    [Migration("20180727183720_Refresh")]
+    partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

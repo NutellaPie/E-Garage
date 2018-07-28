@@ -7,13 +7,14 @@
 
 @{
     var user = await UserManager.GetUserAsync(User);
+    //bool check = await RoleManager.RoleExistsAsync("Admin");
 }
 
 @if (SignInManager.IsSignedIn(User))
 {
     <form asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
-            @if (User.IsInRole("Admin"))
+            @if (@*check == true &&*@ User.IsInRole("Admin") == true)
             {
                 <li>
                     <a class="navbuttons" asp-page="/Roles/Manage">Roles</a>
@@ -28,7 +29,7 @@
                     }
                     else
                     {
-                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/@user.ProfilePic" style="width: 60px; height: 60px" />
+                        <img class="img-thumbnail img-circle" src="~/Uploads/ProfilePics/@user.ProfilePic" style="width: 100px; height: 60px" />
                     }
 
                     Hello @user.Name!

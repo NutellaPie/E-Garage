@@ -76,6 +76,7 @@ namespace SSD_Assignment
             services.AddMvc()
                 .AddRazorPagesOptions(options =>
                 {
+                    options.Conventions.AuthorizeFolder("/Roles", "Admin");
                     options.Conventions.AuthorizeFolder("/Account/Manage");
                     options.Conventions.AuthorizePage("/Account/Logout");
                 });
