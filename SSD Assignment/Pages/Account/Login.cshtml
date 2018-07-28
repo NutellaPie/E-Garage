@@ -7,7 +7,8 @@
 }
 <head>
     <link href=~/css/Login.css rel="stylesheet" type="text/css" />
-  </head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
 
 <h2>@ViewData["Title"]</h2>
 <div class="row">
@@ -27,6 +28,9 @@
                     <input asp-for="Input.Password" class="form-control" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
+                
+                    <div class="g-recaptcha" data-sitekey="6Lex8mYUAAAAACdnRLuBbhfQMg0WoHsckRTPxQyi"></div>
+
                 <div class="form-group">
                     <div class="checkbox">
                         <label asp-for="Input.RememberMe">
@@ -35,6 +39,7 @@
                         </label>
                     </div>
                 </div>
+
                 <div class="form-group">
                     <button type="submit" class="btn btn-default">Log in</button>
                 </div>
