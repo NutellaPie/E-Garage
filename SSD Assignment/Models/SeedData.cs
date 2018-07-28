@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -18,7 +19,7 @@ namespace SSD_Assignment.Models
                     return;   // DB has been seeded
                 }
 
-                context.ApplicationUsers.AddRange(
+                context.ApplicationUsers.Add(
                     new ApplicationUser
                     {
                         Id = "3e3c9390 - cf13 - 4d14 - b7a4 - b370c205ca99",
@@ -37,12 +38,12 @@ namespace SSD_Assignment.Models
                         PhoneNumberConfirmed = false,
                         ProfilePic = "50888506-9c77-4633-8a7a-1b2eee25233dNP ICT logo.jpg",
                         SecurityStamp = "fae51419-eac4-4ffd-a4a9-800d70409292",
-                        TwoFactorEnabled = true,
+                        TwoFactorEnabled = false,
                         UserName = "admin@gmail.com"
                     }
                 );
 
-                context.ApplicationRole.AddRange(
+                context.ApplicationRole.Add(
                     new ApplicationRole
                     {
                         Id = "1e2765a7 - 257f - 4602 - b4fc - c7424e5a5b9b",
@@ -54,7 +55,15 @@ namespace SSD_Assignment.Models
                     }
                 );
 
-               context.SaveChanges();
+                context.UserRoles.Add(
+                    new IdentityUserRole<string>
+                    {
+                        RoleId = "1e2765a7 - 257f - 4602 - b4fc - c7424e5a5b9b",
+                        UserId = "3e3c9390 - cf13 - 4d14 - b7a4 - b370c205ca99"
+                    }
+                );
+
+                context.SaveChanges();
             }
         }
     }

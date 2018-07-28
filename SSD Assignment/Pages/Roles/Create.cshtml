@@ -1,8 +1,9 @@
-﻿@page 
+﻿@page
+
 @model SSD_Assignment.Pages.Roles.CreateModel
 @{
     ViewData["Title"] = "Create"; }
-<h2>Create Role</h2>
+<h2 style="padding-top: 20px;">Create Role</h2>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -26,7 +27,7 @@
 </div>
 <div>
     <a asp-page="Index">Back to List</a>
-</div> 
-@section Scripts { 
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");} 
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
