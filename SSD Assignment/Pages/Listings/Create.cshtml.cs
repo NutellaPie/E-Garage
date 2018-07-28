@@ -60,7 +60,22 @@ namespace SSD_Assignment.Pages.Listings
             await UploadPhoto();
 
             _context.Listing.Add(Listing);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
+
+            // Once a record is added, create an audit record
+            if (await _context.SaveChangesAsync() > 0)
+            {
+                // Create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Add Listing";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.ListingID = Listing.ID;
+                // Get current logged-in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToPage("./Index");
         }

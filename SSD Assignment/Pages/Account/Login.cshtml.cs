@@ -17,6 +17,7 @@ namespace SSD_Assignment.Pages.Account
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
         private readonly SSD_Assignment.Models.ApplicationDbContext _context;
+
         public LoginModel(SignInManager<ApplicationUser> signInManager, ILogger<LoginModel> logger, SSD_Assignment.Models.ApplicationDbContext context)
         {
             _signInManager = signInManager;
@@ -78,7 +79,7 @@ namespace SSD_Assignment.Pages.Account
                     return LocalRedirect(Url.GetLocalUrl(returnUrl));
                 }
                 else
-                {                     // Login failed attempt - create an audit record
+                {   // Login failed attempt - create an audit record
                     var auditrecord = new AuditRecord();
                     auditrecord.AuditActionType = "Failed Login";
                     auditrecord.DateTimeStamp = DateTime.Now;
