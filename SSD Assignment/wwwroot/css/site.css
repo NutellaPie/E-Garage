@@ -42,7 +42,8 @@ body {
 .navbuttons {
     color: black !important;
     font-size: 17px !important;
-    padding: 0px !important;
+    padding-top: 25px !important;
+    padding-bottom: 21px !important;
 }
 
     .navbuttons:hover {
@@ -84,7 +85,6 @@ body {
     border: none;
     font-size: 17px;
     float: left;
-    width: 100px;
 }
 
 .searchbutton {
@@ -93,17 +93,4 @@ body {
     font-size: 17px;
     border: none;
     cursor: pointer;
-}
-
-    .searchbutton:hover {
-        background-color: #b0b0b0 !important;
-    }
-
-.categorynav {
-    float: left;
-    padding: 6px 10px;
-    font-size: 17px;
-    border: none;
-    border-right: solid #DDDDDD 0.5px !important;
-    height: 36px;
 }
