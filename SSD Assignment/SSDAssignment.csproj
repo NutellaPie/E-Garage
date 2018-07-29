@@ -30,5 +30,5 @@
     <Folder Include="wwwroot\images\Listings\" />
     <Folder Include="wwwroot\Uploads\Listings\" />
   </ItemGroup>
-  
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
 </Project>

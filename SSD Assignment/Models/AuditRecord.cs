@@ -24,6 +24,10 @@ namespace SSD_Assignment.Models
         public DateTime DateTimeStamp { get; set; }
         //Time when the event occurred 
 
+        [Display(Name = "Listing ID ")]
+        public int ListingID { get; set; }
+        //Store the ID of movie record that is affected
+
 
     }
 }

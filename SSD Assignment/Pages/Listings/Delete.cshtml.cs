@@ -54,7 +54,20 @@ namespace SSD_Assignment.Pages.Listings
             {
                 System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
                 _context.Listing.Remove(Listing);
-                await _context.SaveChangesAsync();
+                //await _context.SaveChangesAsync();
+
+                // Once a record is deleted, create an audit record
+                if (await _context.SaveChangesAsync() > 0)
+                {
+                    var auditrecord = new AuditRecord();
+                    auditrecord.AuditActionType = "Delete Movie Record";
+                    auditrecord.DateTimeStamp = DateTime.Now;
+                    auditrecord.ListingID = Listing.ID;
+                    var userID = User.Identity.Name.ToString();
+                    auditrecord.Username = userID;
+                    _context.AuditRecords.Add(auditrecord);
+                    await _context.SaveChangesAsync();
+                }
             }
 
             return RedirectToPage("./Index");
