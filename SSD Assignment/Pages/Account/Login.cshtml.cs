@@ -13,6 +13,7 @@ using SSD_Assignment.Models;
 
 namespace SSD_Assignment.Pages.Account
 {
+    [ValidateAntiForgeryToken]
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
