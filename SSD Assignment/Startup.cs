@@ -110,8 +110,7 @@ namespace SSD_Assignment
                 app.UseExceptionHandler("/Error");
             }
 
-            //app.UseStatusCodePages("text/html", "<h1>Status code page</h1> <h2>Status Code: {0}</h2>");
-            //app.UseExceptionHandler("/Error");
+
 
             app.UseStaticFiles();
 
