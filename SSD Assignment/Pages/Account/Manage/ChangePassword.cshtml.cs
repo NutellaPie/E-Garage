@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SSD_Assignment.Models;
 
-
 namespace SSD_Assignment.Pages.Account.Manage
 {
     public class ChangePasswordModel : PageModel
