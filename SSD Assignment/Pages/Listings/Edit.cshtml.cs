@@ -41,12 +41,14 @@ namespace SSD_Assignment.Pages.Listings
 
         public async Task<IActionResult> OnPostAsync()
         {
+
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
             _context.Attach(Listing).State = EntityState.Modified;
+            
 
             try
             {
