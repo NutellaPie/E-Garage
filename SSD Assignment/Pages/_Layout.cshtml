@@ -32,13 +32,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a class="navbuttons" asp-page="/Index">Home</a></li>
                     <li><a class="navbuttons" asp-page="/About">About</a></li>
-                    <li><a class="navbuttons" asp-page="/Contact">Contact</a></li>
                     <li><a class="navbuttons" asp-page="/Listings/Index">Listings</a></li>
                     <li style="padding: 15px;">
                         <form action="/Listings">
-                            <select class="categorynav" name="ListingCategory">
+                            <select class="categorynav" name="ListingCategory" style="height: 35px;">
                                 <option value="" disabled selected>Categories</option>
                                 <option value="Electronics">Electronics</option>
                                 <option value="Fashion">Fashion</option>

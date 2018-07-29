@@ -31,12 +31,23 @@ namespace SSD_Assignment
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMemoryCache(); // Adds a default in-memory 
+                                       // implementation of 
+                                       // IDistributedCache
+                                       // Add framework services.
+            services.AddMvc();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(20);
+            });
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -63,7 +74,7 @@ namespace SSD_Assignment
             {
                 // Cookie settings   
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(300);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(240);
                 // If the LoginPath isn't set, ASP.NET Core defaults
                 // the path to /Account/Login. 
                 options.LoginPath = "/Account/Login";
@@ -98,6 +109,9 @@ namespace SSD_Assignment
             {
                 app.UseExceptionHandler("/Error");
             }
+
+            //app.UseStatusCodePages("text/html", "<h1>Status code page</h1> <h2>Status Code: {0}</h2>");
+            //app.UseExceptionHandler("/Error");
 
             app.UseStaticFiles();
 

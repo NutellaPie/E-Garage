@@ -4,6 +4,18 @@
     <UserSecretsId>aspnet-SSD_Assignment-0CADE72C-9A3E-4095-8CB7-F30C3BDC4E0E</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Remove="Migrations\20180724094613_jj.cs" />
+    <Compile Remove="Migrations\20180724094613_jj.Designer.cs" />
+    <Compile Remove="Migrations\20180725181133_UpdateAppUser4.cs" />
+    <Compile Remove="Migrations\20180725181133_UpdateAppUser4.Designer.cs" />
+    <Compile Remove="Migrations\20180727170657_AddRole.cs" />
+    <Compile Remove="Migrations\20180727170657_AddRole.Designer.cs" />
+    <Compile Remove="Migrations\20180727183648_listing.cs" />
+    <Compile Remove="Migrations\20180727183648_listing.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AntiXSS" Version="4.3.0" />
+    <PackageReference Include="Captcha" Version="4.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.3" PrivateAssets="All" />
@@ -19,4 +31,5 @@
     <Folder Include="wwwroot\images\Listings\" />
     <Folder Include="wwwroot\Uploads\Listings\" />
   </ItemGroup>
+  
 </Project>

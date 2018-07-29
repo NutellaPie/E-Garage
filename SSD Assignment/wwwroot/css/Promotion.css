@@ -1,0 +1,20 @@
+﻿.CreditCard {
+    border-color: lightgray;
+    border-style: solid;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.UserDetails {
+    border-color: lightgray;
+    border-style: solid;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}
+
+.Price {
+    border-color: lightgray;
+    border-style: solid;
+    padding-left: 20px;
+    padding-bottom: 10px;
+}

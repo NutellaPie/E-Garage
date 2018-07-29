@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 
 
 
+
 namespace SSD_Assignment.Pages.Account.Manage
 {
     public partial class IndexModel : PageModel
@@ -25,6 +26,7 @@ namespace SSD_Assignment.Pages.Account.Manage
 
         public bool IsEmailConfirmed { get; set; }
 
+        [FileExtensions(Extensions = "jpg,png,jpeg", ErrorMessage = "Please upload a valid image file. (Only jpg, jpeg and png file extensions are supported)")]
         public string FileName { get; set; }
 
         [TempData]
@@ -37,13 +39,13 @@ namespace SSD_Assignment.Pages.Account.Manage
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private IHostingEnvironment _environment;
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
 
         public IndexModel(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
             IEmailSender emailSender,
-            SSD_Assignment.Data.ApplicationDbContext context)
+            SSD_Assignment.Models.ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -102,6 +104,7 @@ namespace SSD_Assignment.Pages.Account.Manage
 
             IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
 
+            FileName = user.ProfilePic;
             return Page();
         }
 
@@ -122,14 +125,11 @@ namespace SSD_Assignment.Pages.Account.Manage
 
                 using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
                 {
+                    user.ProfilePic = fileName;
                     await Input.ProfilePic.CopyToAsync(fileStream);
-                    user.ProfilePic = Input.ProfilePic;
                 }
-
                 FileName = fileName;
             }
-            
-            user.ProfilePic = Input.ProfilePic;
 
             if (user == null)
             {
@@ -154,6 +154,7 @@ namespace SSD_Assignment.Pages.Account.Manage
                 }
             }
 
+            await _context.SaveChangesAsync();
             StatusMessage = "Your profile has been updated";
             return RedirectToPage("./Index");
         }

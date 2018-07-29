@@ -94,16 +94,3 @@ body {
     border: none;
     cursor: pointer;
 }
-
-    .searchbutton:hover {
-        background-color: #b0b0b0 !important;
-    }
-
-.categorynav {
-    float: left;
-    padding: 6px 10px;
-    font-size: 17px;
-    border: none;
-    border-right: solid #DDDDDD 0.5px !important;
-    height: 36px;
-}

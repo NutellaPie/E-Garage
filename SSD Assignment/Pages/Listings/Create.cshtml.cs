@@ -6,14 +6,19 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using SSD_Assignment.Models;
-using SSD_Assignment.Data;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SSD_Assignment.Pages.Listings
 {
+    [Authorize]
     public class CreateModel : PageModel
     {
-        private readonly SSD_Assignment.Data.ApplicationDbContext _context;
+        private readonly UserManager<ApplicationUser> _userManager;
+        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly SSD_Assignment.Models.ApplicationDbContext _context;
+
         private async Task UploadPhoto()
         {
             var fileName = Guid.NewGuid().ToString() + Listing.Photo.FileName;
@@ -27,8 +32,13 @@ namespace SSD_Assignment.Pages.Listings
 
             Listing.PhotoPath = fileName;
         }
-        public CreateModel(SSD_Assignment.Data.ApplicationDbContext context)
+        public CreateModel(
+            SSD_Assignment.Models.ApplicationDbContext context,
+            UserManager<ApplicationUser> userManager,
+            SignInManager<ApplicationUser> signInManager)
         {
+            _userManager = userManager;
+            _signInManager = signInManager;
             _context = context;
         }
 
@@ -50,7 +60,22 @@ namespace SSD_Assignment.Pages.Listings
             await UploadPhoto();
 
             _context.Listing.Add(Listing);
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
+
+            // Once a record is added, create an audit record
+            if (await _context.SaveChangesAsync() > 0)
+            {
+                // Create an auditrecord object
+                var auditrecord = new AuditRecord();
+                auditrecord.AuditActionType = "Add Listing";
+                auditrecord.DateTimeStamp = DateTime.Now;
+                auditrecord.ListingID = Listing.ID;
+                // Get current logged-in user
+                var userID = User.Identity.Name.ToString();
+                auditrecord.Username = userID;
+                _context.AuditRecords.Add(auditrecord);
+                await _context.SaveChangesAsync();
+            }
 
             return RedirectToPage("./Index");
         }
