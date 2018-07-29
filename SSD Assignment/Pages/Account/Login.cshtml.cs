@@ -50,6 +50,7 @@ namespace SSD_Assignment.Pages.Account
 
         }
 
+
         public async Task OnGetAsync(string returnUrl = null)
         {
             if (!string.IsNullOrEmpty(ErrorMessage))
@@ -105,7 +106,7 @@ namespace SSD_Assignment.Pages.Account
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
-
+                
 
             }
 

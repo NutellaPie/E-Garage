@@ -11,7 +11,7 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180727183720_Refresh")]
+    [Migration("20180728192717_Refresh")]
     partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
