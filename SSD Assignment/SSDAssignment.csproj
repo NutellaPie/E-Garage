@@ -14,7 +14,6 @@
     <Compile Remove="Migrations\20180727183648_listing.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AntiXSS" Version="4.3.0" />
     <PackageReference Include="Captcha" Version="4.3.2" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.2" PrivateAssets="All" />

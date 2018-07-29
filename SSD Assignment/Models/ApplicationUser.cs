@@ -15,7 +15,7 @@ namespace SSD_Assignment.Models
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         [Required]
-        [FileExtensions(Extensions = "jpg,png,jpeg", ErrorMessage = "Please upload a valid image file. (Only jpg, jpeg and png file extensions are supported)")]
+        [FileExtensions(Extensions = "png", ErrorMessage = "Please upload a valid image file. (Only jpg, jpeg and png file extensions are supported)")]
         public string ProfilePic { get; set; }
     }
 }
