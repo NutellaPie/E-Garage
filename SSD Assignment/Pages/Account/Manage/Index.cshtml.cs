@@ -26,7 +26,6 @@ namespace SSD_Assignment.Pages.Account.Manage
 
         public bool IsEmailConfirmed { get; set; }
 
-        [FileExtensions(Extensions = "png", ErrorMessage = "Please upload a valid image file. (Only jpg, jpeg and png file extensions are supported)")]
         public string FileName { get; set; }
 
         [TempData]
@@ -66,6 +65,7 @@ namespace SSD_Assignment.Pages.Account.Manage
 
             [Display(Name = "Profile Picture")]
             [BindProperty]
+            //[FileExtensions(Extensions = "png", ErrorMessage = "Please upload a valid image file. (Only png file extensions are supported)")]
             public IFormFile ProfilePic { get; set; }
         }
 
