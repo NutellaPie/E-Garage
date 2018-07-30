@@ -14,6 +14,7 @@ using System.IO;
 
 namespace SSD_Assignment.Pages.Account
 {
+    [ValidateAntiForgeryToken]
     public class RegisterModel : PageModel
     {
         public string FileName { get; set; }

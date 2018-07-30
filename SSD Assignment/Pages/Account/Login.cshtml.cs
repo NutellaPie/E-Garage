@@ -13,6 +13,7 @@ using SSD_Assignment.Models;
 
 namespace SSD_Assignment.Pages.Account
 {
+    [ValidateAntiForgeryToken]
     public class LoginModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -50,6 +51,7 @@ namespace SSD_Assignment.Pages.Account
             public bool RememberMe { get; set; }
 
         }
+
 
         public async Task OnGetAsync(string returnUrl = null)
         {
@@ -106,7 +108,7 @@ namespace SSD_Assignment.Pages.Account
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
-
+                
 
             }
 
