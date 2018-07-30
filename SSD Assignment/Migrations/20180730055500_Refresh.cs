@@ -61,6 +61,7 @@ namespace SSDAssignment.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     AuditActionType = table.Column<string>(nullable: true),
                     DateTimeStamp = table.Column<DateTime>(nullable: false),
+                    ListingID = table.Column<int>(nullable: false),
                     Username = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
