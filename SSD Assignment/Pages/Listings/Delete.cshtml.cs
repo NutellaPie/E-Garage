@@ -52,7 +52,10 @@ namespace SSD_Assignment.Pages.Listings
 
             if (Listing != null)
             {
-                System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+                if (!(Listing.PhotoPath == "default-box.png"))
+                {
+                    System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+                }
                 _context.Listing.Remove(Listing);
                 //await _context.SaveChangesAsync();
 

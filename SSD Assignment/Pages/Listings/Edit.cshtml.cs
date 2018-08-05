@@ -28,7 +28,10 @@ namespace SSD_Assignment.Pages.Listings
                 await Listing.Photo.CopyToAsync(fileStream);
             }
 
-            System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+            if (!(Listing.PhotoPath == "default-box.png"))
+            {
+                System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+            }
             Listing.PhotoPath = fileName;
         }
 

@@ -26,6 +26,7 @@ namespace SSD_Assignment.Models
         public string PhotoPath { get; set; }
         //[Required]
         [NotMapped]
+        //[FileExtensions(Extensions =".png,.jpg,.gif", ErrorMessage ="Only .png, .jpg and .gif files are allowed")]
         public IFormFile Photo { get; set; }
     }
 }
