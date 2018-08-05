@@ -26,7 +26,7 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Name)
+                    @Html.Raw(Microsoft.Security.Application.Encoder.HtmlEncode(item.Name))
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Description)

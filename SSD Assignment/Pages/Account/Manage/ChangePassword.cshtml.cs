@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SSD_Assignment.Models;
-using Microsoft.Security.Application;
 
 namespace SSD_Assignment.Pages.Account.Manage
 {

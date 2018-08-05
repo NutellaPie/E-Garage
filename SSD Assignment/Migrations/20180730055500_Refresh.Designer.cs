@@ -11,7 +11,7 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180727183720_Refresh")]
+    [Migration("20180730055500_Refresh")]
     partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -199,6 +199,8 @@ namespace SSDAssignment.Migrations
                     b.Property<string>("AuditActionType");
 
                     b.Property<DateTime>("DateTimeStamp");
+
+                    b.Property<int>("ListingID");
 
                     b.Property<string>("Username");
 
