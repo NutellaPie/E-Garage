@@ -17,19 +17,20 @@ namespace SSD_Assignment.Pages.Listings
     public class EditModel : PageModel
     {
         private readonly SSD_Assignment.Models.ApplicationDbContext _context;
-        //private async Task UploadPhoto()
-        //{
-        //    var fileName = Guid.NewGuid().ToString() + Listing.Photo.FileName;
-        //    var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings");
-        //    var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
+        private async Task UploadPhoto()
+        {
+            var fileName = Guid.NewGuid().ToString() + Listing.Photo.FileName;
+            var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings");
+            var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
 
-        //    using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
-        //    {
-        //        await Listing.Photo.CopyToAsync(fileStream);
-        //    }
+            using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+            {
+                await Listing.Photo.CopyToAsync(fileStream);
+            }
 
-        //    Listing.PhotoPath = fileName;
-        //}
+            System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+            Listing.PhotoPath = fileName;
+        }
 
         public EditModel(SSD_Assignment.Models.ApplicationDbContext context)
         {
@@ -64,7 +65,10 @@ namespace SSD_Assignment.Pages.Listings
                 return Page();
             }
 
-            //await UploadPhoto();
+            if (!(Listing.Photo == null))
+            {
+                await UploadPhoto();
+            }
 
             _context.Attach(Listing).State = EntityState.Modified;
             
@@ -72,6 +76,7 @@ namespace SSD_Assignment.Pages.Listings
             try
             {
                 await _context.SaveChangesAsync();
+                
             }
             catch (DbUpdateConcurrencyException)
             {
