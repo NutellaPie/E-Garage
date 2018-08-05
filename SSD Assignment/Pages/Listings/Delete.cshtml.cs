@@ -60,7 +60,7 @@ namespace SSD_Assignment.Pages.Listings
                 if (await _context.SaveChangesAsync() > 0)
                 {
                     var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Delete Movie Record";
+                    auditrecord.AuditActionType = "Delete Listing";
                     auditrecord.DateTimeStamp = DateTime.Now;
                     auditrecord.ListingID = Listing.ID;
                     var userID = User.Identity.Name.ToString();
