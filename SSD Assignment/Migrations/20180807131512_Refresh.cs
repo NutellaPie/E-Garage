@@ -78,6 +78,7 @@ namespace SSDAssignment.Migrations
                     Category = table.Column<string>(nullable: false),
                     Condition = table.Column<string>(nullable: false),
                     Description = table.Column<string>(nullable: false),
+                    MyProperty = table.Column<int>(nullable: false),
                     PhotoPath = table.Column<string>(nullable: true),
                     Price = table.Column<decimal>(nullable: false),
                     Title = table.Column<string>(nullable: false)

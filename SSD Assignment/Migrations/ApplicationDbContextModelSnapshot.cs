@@ -222,6 +222,8 @@ namespace SSDAssignment.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
+                    b.Property<int>("MyProperty");
+
                     b.Property<string>("PhotoPath");
 
                     b.Property<DateTime>("PostedDateTime");

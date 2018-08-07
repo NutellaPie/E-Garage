@@ -11,7 +11,7 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180805021116_Refresh")]
+    [Migration("20180807131512_Refresh")]
     partial class Refresh
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -222,6 +222,8 @@ namespace SSDAssignment.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired();
+
+                    b.Property<int>("MyProperty");
 
                     b.Property<string>("PhotoPath");
 
