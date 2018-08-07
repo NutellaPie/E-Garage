@@ -46,7 +46,7 @@
                                 <option value="Entertainment">Entertainment</option>
                                 <option value="Books">Books</option>
                             </select>
-                            <input class="searchnav" type="text" name="SearchString" placeholder="Search for an item">
+                            <input class="searchnav" type="text" name="SearchString" placeholder="Search for an item" pattern="^[a-zA-Z][\sa-zA-Z0-9]*$" title="Please enter an alphanumeric string that starts with an alphabet.">
                             <button type="submit" class="searchbutton"><i class="fa fa-search"></i></button>
                         </form>
                     </li>

@@ -12,7 +12,7 @@ namespace SSD_Assignment.Models
     {
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z][\sa-zA-Z0-9]*$", ErrorMessage = "Please enter an alphanumeric string that starts with a character.")]
+        [RegularExpression(@"^[a-zA-Z][\sa-zA-Z0-9]*$", ErrorMessage = "Please enter an alphanumeric string that starts with an alphabet.")]
         public string Title { get; set; }
         [Required]
         public decimal Price { get; set; }
@@ -28,5 +28,6 @@ namespace SSD_Assignment.Models
         [NotMapped]
         //[FileExtensions(Extensions =".png,.jpg,.gif", ErrorMessage ="Only .png, .jpg and .gif files are allowed")]
         public IFormFile Photo { get; set; }
+        public int MyProperty { get; set; }
     }
 }
