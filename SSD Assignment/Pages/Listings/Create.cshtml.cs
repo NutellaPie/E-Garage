@@ -118,7 +118,7 @@ namespace SSD_Assignment.Pages.Listings
             //Validate uploaded photo
             if (GetImageType(FinalPath) == "")
             {
-                TempData["notice"] = "Please upload a valid file.";
+                TempData["notice"] = "Please upload a valid file";
                 return Page();
             }
 
