@@ -28,6 +28,7 @@ namespace SSD_Assignment.Models
         [NotMapped]
         //[FileExtensions(Extensions =".png,.jpg,.gif", ErrorMessage ="Only .png, .jpg and .gif files are allowed")]
         public IFormFile Photo { get; set; }
-        public int MyProperty { get; set; }
+        public string UserName { get; set; }
+        public DateTime PostedDateTime { get; set; }
     }
 }

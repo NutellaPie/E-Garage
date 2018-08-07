@@ -36,7 +36,7 @@ namespace SSDAssignment.Pages.Audit
             {
                 return NotFound();
             }
-            return Page();
+            return RedirectToPage("../Account/AccessDenied");
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)

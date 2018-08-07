@@ -11,9 +11,10 @@ using System;
 namespace SSDAssignment.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180807141925_ListingUsername")]
+    partial class ListingUsername
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,8 +224,6 @@ namespace SSDAssignment.Migrations
                         .IsRequired();
 
                     b.Property<string>("PhotoPath");
-
-                    b.Property<DateTime>("PostedDateTime");
 
                     b.Property<decimal>("Price");
 

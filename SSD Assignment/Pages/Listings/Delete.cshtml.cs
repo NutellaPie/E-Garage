@@ -38,6 +38,13 @@ namespace SSD_Assignment.Pages.Listings
             {
                 return NotFound();
             }
+
+            //Check if user is authenticated to delete
+            if ((User.Identity.Name != Listing.UserName) && !(User.IsInRole("Admin")))
+            {
+                return RedirectToPage("../Account/AccessDenied");
+            }
+
             return Page();
         }
 

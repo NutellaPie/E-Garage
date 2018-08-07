@@ -19,6 +19,11 @@
     <hr />
     <table class="description-table">
         <tr>
+            Posted on
+            <strong>@Model.Listing.PostedDateTime.ToString("dd/MM/yyyy")</strong> by
+            <strong>@Html.DisplayFor(model => model.Listing.UserName)</strong>.
+        </tr>
+        <tr>
             <td><img src="~/images/Listings/price-tag.png"></td>
             <td>S$@Html.DisplayFor(model => model.Listing.Price)</td>
         </tr>
@@ -34,12 +39,15 @@
             <td style="vertical-align: text-top"><img src="~/images/Listings/information.png"></td>
             <td class="description">@Html.DisplayFor(model => model.Listing.Description)</td>
         </tr>
-        <tr>
-            <td colspan="2">
-                <a asp-page="./Edit" asp-route-id="@Model.Listing.ID">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@Model.Listing.ID">Delete</a>
+        @if (!((User.Identity.Name != Model.Listing.UserName) && !(User.IsInRole("Admin"))))
+        {
+            <tr>
+            <td colspan = "2">
+            <a asp-page="./Edit" asp-route-id="@Model.Listing.ID"> Edit </a> |
+            <a asp-page="./Delete" asp-route-id="@Model.Listing.ID"> Delete </a>
             </td>
-        </tr>
+            </tr>
+        }
     </table>
 </div>
 <a asp-page="./Promotion">

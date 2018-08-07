@@ -10,6 +10,7 @@ using SSD_Assignment.Models;
 using SSD_Assignment.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
 
 namespace SSD_Assignment.Pages.Listings
 {   
@@ -56,6 +57,13 @@ namespace SSD_Assignment.Pages.Listings
             {
                 return NotFound();
             }
+
+            //Check if user is authenticated to edit
+            if ((User.Identity.Name != Listing.UserName) && !(User.IsInRole("Admin")))
+            {
+                return RedirectToPage("../Account/AccessDenied");
+            }
+
             return Page();
         }
 

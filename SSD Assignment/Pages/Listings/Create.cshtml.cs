@@ -66,6 +66,13 @@ namespace SSD_Assignment.Pages.Listings
                 await UploadPhoto();
             }
 
+            //Record User who created listing
+            //Listing.UserID = Int32.Parse((await _userManager.GetUserAsync(HttpContext.User))?.Id);
+            Listing.UserName = User.Identity.Name.ToString();
+
+            //Recorde date listing is created
+            Listing.PostedDateTime = DateTime.Now;
+
             _context.Listing.Add(Listing);
             //await _context.SaveChangesAsync();
 
