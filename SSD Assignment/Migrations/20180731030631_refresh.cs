@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace SSDAssignment.Migrations
 {
-    public partial class Refresh : Migration
+    public partial class refresh : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
