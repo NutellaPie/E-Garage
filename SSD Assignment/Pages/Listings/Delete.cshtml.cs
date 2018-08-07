@@ -52,7 +52,10 @@ namespace SSD_Assignment.Pages.Listings
 
             if (Listing != null)
             {
-                System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+                if (!(Listing.PhotoPath == "default-box.png"))
+                {
+                    System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
+                }
                 _context.Listing.Remove(Listing);
                 //await _context.SaveChangesAsync();
 
@@ -60,7 +63,7 @@ namespace SSD_Assignment.Pages.Listings
                 if (await _context.SaveChangesAsync() > 0)
                 {
                     var auditrecord = new AuditRecord();
-                    auditrecord.AuditActionType = "Delete Movie Record";
+                    auditrecord.AuditActionType = "Delete Listing";
                     auditrecord.DateTimeStamp = DateTime.Now;
                     auditrecord.ListingID = Listing.ID;
                     var userID = User.Identity.Name.ToString();

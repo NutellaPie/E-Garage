@@ -57,7 +57,14 @@ namespace SSD_Assignment.Pages.Listings
                 return Page();
             }
 
-            await UploadPhoto();
+            if (Listing.Photo == null)
+            {
+                Listing.PhotoPath = "default-box.png";
+            }
+            else
+            {
+                await UploadPhoto();
+            }
 
             _context.Listing.Add(Listing);
             //await _context.SaveChangesAsync();

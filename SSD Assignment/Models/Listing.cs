@@ -12,18 +12,22 @@ namespace SSD_Assignment.Models
     {
         public int ID { get; set; }
         [Required]
+        [RegularExpression(@"^[a-zA-Z][\sa-zA-Z0-9]*$", ErrorMessage = "Please enter an alphanumeric string that starts with an alphabet.")]
         public string Title { get; set; }
         [Required]
         public decimal Price { get; set; }
         [Required]
+        [RegularExpression(@"^[\sa-zA-Z0-9_@./#&+-]*$", ErrorMessage = "Please enter a valid string.")]
         public string Description { get; set; }
         [Required]
         public string Category { get; set; }
         [Required]
         public string Condition { get; set; }
         public string PhotoPath { get; set; }
-        [Required]
+        //[Required]
         [NotMapped]
+        //[FileExtensions(Extensions =".png,.jpg,.gif", ErrorMessage ="Only .png, .jpg and .gif files are allowed")]
         public IFormFile Photo { get; set; }
+        public int MyProperty { get; set; }
     }
 }

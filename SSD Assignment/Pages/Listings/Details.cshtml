@@ -35,7 +35,10 @@
             <td class="description">@Html.DisplayFor(model => model.Listing.Description)</td>
         </tr>
         <tr>
-            <td colspan="2"><a asp-page="./Delete" asp-route-id="@Model.Listing.ID">Delete</a></td>
+            <td colspan="2">
+                <a asp-page="./Edit" asp-route-id="@Model.Listing.ID">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@Model.Listing.ID">Delete</a>
+            </td>
         </tr>
     </table>
 </div>
