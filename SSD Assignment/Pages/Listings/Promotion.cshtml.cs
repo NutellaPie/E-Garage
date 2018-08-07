@@ -50,6 +50,11 @@ namespace SSDAssignment.Pages.Listings
                 return RedirectToPage("../Account/AccessDenied");
             }
 
+            if (Listing.Promoted)
+            {
+                return RedirectToPage("./PromotionExists");
+            }
+
             return Page();
         }
 
@@ -68,6 +73,7 @@ namespace SSDAssignment.Pages.Listings
 
             _context.Promotion.Add(Promotion);
             Listing.Title = "(Promoted) " + Listing.Title;
+            Listing.Promoted = true;
 
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");

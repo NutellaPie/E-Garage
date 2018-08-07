@@ -9,13 +9,21 @@
     <link rel="stylesheet" href="~/css/Products.css" />
 }
 
-<h2 style="padding-top: 20px;">Listings</h2>
+<h2 style="margin-top: 100px;">Listings</h2>
+
+@if (!String.IsNullOrEmpty(Request.Query["searchString"]))
+{
+    <h3>
+        Search results for "@Request.Query["searchString"]"
+    </h3>
+}
 
 <p>
     <a class="btn btn-default" asp-page="Create">
         Create a New Listing
     </a>
 </p>
+
 
 <ul class="products">
     @foreach (var item in Model.Listing)
@@ -46,57 +54,57 @@
 </ul>
 
 @*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Listing[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Listing[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Listing[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Listing[0].Category)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Listing[0].Condition)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Listing[0].Photo)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.Listing)
-        {
+        <thead>
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Condition)
-                </td>
-                <td>
-                    <img src="~/Uploads/Listings/@item.PhotoPath" class="img-thumbnail" width="50" />
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.Listing[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Listing[0].Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Listing[0].Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Listing[0].Category)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Listing[0].Condition)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Listing[0].Photo)
+                </th>
+                <th></th>
             </tr>
-        }
-    </tbody>
-</table>*@
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Listing)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Condition)
+                    </td>
+                    <td>
+                        <img src="~/Uploads/Listings/@item.PhotoPath" class="img-thumbnail" width="50" />
+                    </td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>*@

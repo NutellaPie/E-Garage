@@ -30,5 +30,6 @@ namespace SSD_Assignment.Models
         public IFormFile Photo { get; set; }
         public string UserName { get; set; }
         public DateTime PostedDateTime { get; set; }
+        public bool Promoted { get; set; }
     }
 }
