@@ -65,7 +65,7 @@ namespace SSD_Assignment.Pages.Account.Manage
 
             [Display(Name = "Profile Picture")]
             [BindProperty]
-            //[FileExtensions(Extensions = "png", ErrorMessage = "Please upload a valid image file. (Only png file extensions are supported)")]
+            //[FileExtensions(Extensions = "png,jpg", ErrorMessage = "Please upload a valid image file. (Only png file extensions are supported)")]
             public IFormFile ProfilePic { get; set; }
         }
 
@@ -119,16 +119,25 @@ namespace SSD_Assignment.Pages.Account.Manage
 
             if (Input.ProfilePic != null)
             {
-                var fileName = Guid.NewGuid().ToString() + Input.ProfilePic.FileName;
-                var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
-                var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
-
-                using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+                var fileExtension = Input.ProfilePic.FileName.Substring(Input.ProfilePic.FileName.IndexOf("."));
+                if (fileExtension == ".png" || fileExtension == ".jpg" || fileExtension == ".jpeg")
                 {
-                    user.ProfilePic = fileName;
-                    await Input.ProfilePic.CopyToAsync(fileStream);
+                    var fileName = Guid.NewGuid().ToString() + Input.ProfilePic.FileName;
+                    var uploadsDirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/ProfilePics");
+                    var uploadedfilePath = Path.Combine(uploadsDirectoryPath, fileName);
+
+                    using (var fileStream = new FileStream(uploadedfilePath, FileMode.Create))
+                    {
+                        user.ProfilePic = fileName;
+                        await Input.ProfilePic.CopyToAsync(fileStream);
+                    }
+                    FileName = fileName;
                 }
-                FileName = fileName;
+                else
+                {
+                    StatusMessage = "Please upload a valid profile picture.";
+                    return RedirectToPage("./Index");
+                }
             }
 
             if (user == null)
