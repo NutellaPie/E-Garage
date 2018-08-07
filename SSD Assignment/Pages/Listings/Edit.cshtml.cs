@@ -11,6 +11,7 @@ using SSD_Assignment.Data;
 using Microsoft.AspNetCore.Authorization;
 using System.IO;
 using Microsoft.AspNetCore.Identity;
+using System.Text;
 
 namespace SSD_Assignment.Pages.Listings
 {   
@@ -29,11 +30,53 @@ namespace SSD_Assignment.Pages.Listings
                 await Listing.Photo.CopyToAsync(fileStream);
             }
 
-            if (!(Listing.PhotoPath == "default-box.png"))
+            if (!(Listing.PhotoPath == "default-box.png") && (GetImageType(uploadedfilePath) != ""))
             {
                 System.IO.File.Delete(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings", Listing.PhotoPath));
             }
             Listing.PhotoPath = fileName;
+        }
+
+        //File Upload Validation
+        public static string GetImageType(string path)
+        {
+            string headerCode = GetHeaderInfo(path).ToUpper();
+
+            if (headerCode.StartsWith("FFD8FFE0"))
+            {
+                return "JPG";
+            }
+            else if (headerCode.StartsWith("424D"))
+            {
+                return "BMP";
+            }
+            else if (headerCode.StartsWith("474946"))
+            {
+                return "GIF";
+            }
+            else if (headerCode.StartsWith("89504E470D0A1A0A"))
+            {
+                return "PNG";
+            }
+            else
+            {
+                return ""; //UnKnown
+            }
+        }
+
+        public static string GetHeaderInfo(string path)
+        {
+            byte[] buffer = new byte[8];
+
+            BinaryReader reader = new BinaryReader(new FileStream(path, FileMode.Open));
+            reader.Read(buffer, 0, buffer.Length);
+            reader.Close();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in buffer)
+                sb.Append(b.ToString("X2"));
+
+            return sb.ToString();
         }
 
         public EditModel(SSD_Assignment.Models.ApplicationDbContext context)
@@ -79,6 +122,17 @@ namespace SSD_Assignment.Pages.Listings
             if (!(Listing.Photo == null))
             {
                 await UploadPhoto();
+            }
+
+            //File Upload path
+            var DirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings");
+            var FinalPath = Path.Combine(DirectoryPath, Listing.PhotoPath);
+
+            //Validate uploaded photo
+            if (GetImageType(FinalPath) == "")
+            {
+                TempData["notice"] = "Please upload a valid file";
+                return Page();
             }
 
             _context.Attach(Listing).State = EntityState.Modified;

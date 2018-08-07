@@ -12,6 +12,12 @@
 <h2 style="padding-top: 20px;">Edit this listing</h2>
 
 <hr />
+
+@if (TempData["notice"] != null)
+{
+    <h4 style="color: red;">@TempData["notice"]</h4>
+}
+
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">
@@ -23,7 +29,7 @@
             <input type="hidden" asp-for="Listing.PhotoPath" />
             <div class="form-group">
                 <label asp-for="Listing.Photo" class="control-label">Image</label>
-                <input asp-for="Listing.Photo" type="file" class="form-control" />
+                <input asp-for="Listing.Photo" type="file" id="file" accept="image/*" class="form-control" onchange="return fileValidation()" />
                 <span asp-validation-for="Listing.Photo" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -33,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Listing.Price" class="control-label"></label>
-                <input asp-for="Listing.Price" class="form-control" placeholder="Price in SGD" type="number" step="0.01" min="0"/>
+                <input asp-for="Listing.Price" class="form-control" placeholder="Price in SGD" type="number" step="0.01" min="0" />
                 <span asp-validation-for="Listing.Price" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -109,5 +115,26 @@
 </div>
 
 @section Scripts {
+    <script type="text/javascript">
+        function fileValidation() {
+            var fileInput = document.getElementById('file');
+            var filePath = fileInput.value;
+            var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif|\.bmp)$/i;
+            if (!allowedExtensions.exec(filePath)) {
+                alert('Sorry, chosen file is invalid, only files with extensions .jpeg /.jpg /.png /.gif/.bmp are accepted.');
+                fileInput.value = '';
+                return false;
+            } else {
+                //Image preview
+                if (fileInput.files && fileInput.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('imagePreview').innerHTML = '<img src="' + e.target.result + '"/>';
+                    };
+                    reader.readAsDataURL(fileInput.files[0]);
+                }
+            }
+        }
+    </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

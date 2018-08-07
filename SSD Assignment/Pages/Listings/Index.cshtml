@@ -11,10 +11,22 @@
 
 <h2 style="margin-top: 100px;">Listings</h2>
 
-@if (!String.IsNullOrEmpty(Request.Query["searchString"]))
+@if ((!String.IsNullOrEmpty(Request.Query["searchString"])) && (!String.IsNullOrEmpty(Request.Query["listingCategory"])))
+{
+<h3>
+    Search results for "@Request.Query["searchString"]" under "@Request.Query["listingCategory"]"
+</h3>
+}
+else if (!String.IsNullOrEmpty(Request.Query["searchString"]))
 {
     <h3>
         Search results for "@Request.Query["searchString"]"
+    </h3>
+}
+else if (!String.IsNullOrEmpty(Request.Query["listingCategory"]))
+{
+    <h3>
+        Search results for "@Request.Query["listingCategory"]" category
     </h3>
 }
 
