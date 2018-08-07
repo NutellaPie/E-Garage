@@ -138,22 +138,21 @@ namespace SSD_Assignment.Pages.Listings
             _context.Attach(Listing).State = EntityState.Modified;
             
 
-            try
-            {
-                await _context.SaveChangesAsync();
-                
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ListingExists(Listing.ID))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            //try
+            //{
+            //    await _context.SaveChangesAsync();
+            //}
+            //catch (DbUpdateConcurrencyException)
+            //{
+            //    if (!ListingExists(Listing.ID))
+            //    {
+            //        return NotFound();
+            //    }
+            //    else
+            //    {
+            //        throw;
+            //    }
+            //}
 
             //if listing is edited, create record
             if (await _context.SaveChangesAsync() > 0)
