@@ -44,6 +44,7 @@ namespace SSD_Assignment.Pages.Listings
             }
 
             Categories = new SelectList(await categoryQuery.Distinct().ToListAsync());
+            listings = listings.OrderBy(t => t.Title);
             Listing = await listings.ToListAsync();
         }
     }

@@ -12,7 +12,7 @@ namespace SSD_Assignment.Models
     {
         public int ID { get; set; }
         [Required]
-        [RegularExpression(@"^[a-zA-Z][\sa-zA-Z0-9]*$", ErrorMessage = "Please enter an alphanumeric string that starts with an alphabet.")]
+        [RegularExpression(@"^[a-zA-Z.\-\)\(][\sa-zA-Z0-9.\-\)\(]*$", ErrorMessage = "Please enter an alphanumeric string that starts with an alphabet (Parenthesis are allowed).")]
         public string Title { get; set; }
         [Required]
         public decimal Price { get; set; }

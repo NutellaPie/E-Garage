@@ -16,5 +16,6 @@ namespace SSD_Assignment.Models
         public int CardNumber { get; set; }
         public DateTime DateOfExpiry { get; set; }
         public int CVV { get; set; }
+        public int ListingID { get; set; }
     }
 }

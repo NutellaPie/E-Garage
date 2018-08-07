@@ -222,8 +222,6 @@ namespace SSDAssignment.Migrations
                     b.Property<string>("Description")
                         .IsRequired();
 
-                    b.Property<int>("MyProperty");
-
                     b.Property<string>("PhotoPath");
 
                     b.Property<DateTime>("PostedDateTime");
@@ -256,6 +254,8 @@ namespace SSDAssignment.Migrations
                     b.Property<string>("FirstName");
 
                     b.Property<string>("LastName");
+
+                    b.Property<int>("ListingID");
 
                     b.Property<int>("PhoneNumber");
 
