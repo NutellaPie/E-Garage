@@ -13,6 +13,12 @@
 
 <h4>What are you listing today?</h4>
 <hr />
+
+@if (TempData["notice"] != null)
+{
+    <h4 style="color: red;">@TempData["notice"]</h4>
+}
+
 <div class="row">
     <div class="col-md-4">
         <form method="post" enctype="multipart/form-data">

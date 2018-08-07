@@ -9,6 +9,8 @@ using SSD_Assignment.Models;
 using System.IO;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using System.Text;
+
 
 namespace SSD_Assignment.Pages.Listings
 {
@@ -32,6 +34,49 @@ namespace SSD_Assignment.Pages.Listings
 
             Listing.PhotoPath = fileName;
         }
+
+        //File Upload Validation
+        public static string GetImageType(string path)
+        {
+            string headerCode = GetHeaderInfo(path).ToUpper();
+
+            if (headerCode.StartsWith("FFD8FFE0"))
+            {
+                return "JPG";
+            }
+            else if (headerCode.StartsWith("424D"))
+            {
+                return "BMP";
+            }
+            else if (headerCode.StartsWith("474946"))
+            {
+                return "GIF";
+            }
+            else if (headerCode.StartsWith("89504E470D0A1A0A"))
+            {
+                return "PNG";
+            }
+            else
+            {
+                return ""; //UnKnown
+            }
+        }
+
+        public static string GetHeaderInfo(string path)
+        {
+            byte[] buffer = new byte[8];
+
+            BinaryReader reader = new BinaryReader(new FileStream(path, FileMode.Open));
+            reader.Read(buffer, 0, buffer.Length);
+            reader.Close();
+
+            StringBuilder sb = new StringBuilder();
+            foreach (byte b in buffer)
+                sb.Append(b.ToString("X2"));
+
+            return sb.ToString();
+        }
+
         public CreateModel(
             SSD_Assignment.Models.ApplicationDbContext context,
             UserManager<ApplicationUser> userManager,
@@ -64,6 +109,17 @@ namespace SSD_Assignment.Pages.Listings
             else
             {
                 await UploadPhoto();
+            }
+
+            //File Upload path
+            var DirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Uploads/Listings");
+            var FinalPath = Path.Combine(DirectoryPath, Listing.PhotoPath);
+
+            //Validate uploaded photo
+            if (GetImageType(FinalPath) == "")
+            {
+                TempData["notice"] = "Please upload a valid file.";
+                return Page();
             }
 
             //Record User who created listing
